@@ -1,4 +1,4 @@
-import jeuImg from './mapNight.png';
+import jeuImg from './map3.png';
 import FrImg from './francepng.png';
 import AlImg from '../Home/algerie.svg';
 
@@ -104,13 +104,13 @@ export default function test(canvasId)
         context.translate(-xpos, 0);
         
         for (var i = 0; i < numImages; i++) {
-            context.drawImage(backgroundImage, i * backgroundImage.width - xpos, 0);
+            context.drawImage(backgroundImage, i * backgroundImage.width, 0);
         }
         context.restore();
 
         cubes.forEach(cub => {
-            context.fillRect(cub.x - 2.5 , cub.y - 2.5, cub.xx + 5,cub.yy + 5  );
-            context.drawImage(skin2,cub.x , cub.y, cub.xx,cub.yy  );
+            context.fillRect(cub.x  , cub.y , cub.xx ,cub.yy   );
+            // context.drawImage(skin2,cub.x , cub.y, cub.xx,cub.yy  );
             cub.x -= (10 * speed);
             Collision(dino.x, dino.y, cub.x, cub.y, 50, 50, cub.xx, cub.yy);
           });
