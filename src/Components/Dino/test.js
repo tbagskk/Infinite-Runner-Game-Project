@@ -1,11 +1,12 @@
 import jeuImg from './map3.png';
 import FrImg from './francepng.png';
 import AlImg from '../Home/algerie.svg';
+import axios from 'axios';
 
-
-export default function test(canvasId) 
+export default function test(canvasId, onGameOver, name) 
 {
 
+    console.log("name ?", name);
     let height = 500;
     let width = 1200;
     let status = false;
@@ -19,6 +20,8 @@ export default function test(canvasId)
     var lastTextUpdateTime = 0;
     var score = 0;
     let speed = 1;
+    let intervalId;
+    let animationId;
     
     
 
@@ -31,6 +34,30 @@ export default function test(canvasId)
         isCollised: false,
         jumpCount: 0,
     };
+
+    function resetGame() {
+        status = false;
+        velocityY = 0;
+        gravity = 0.6;
+        dinoY = 500 - 50;
+        cubes = [];
+        totalSeconds = 0;
+        lastFrameTime = 0;
+        startTime = 0;
+        lastTextUpdateTime = 0;
+        score = 0;
+        speed = 1;
+    
+        dino = {
+          x: 250,
+          y: dinoY,
+          velocity: 0,
+          isJumping: false,
+          jumpStart: 0,
+          isCollised: false,
+          jumpCount: 0,
+        };
+      }
 
 
     const canvas = document.getElementById(canvasId);
@@ -45,12 +72,12 @@ export default function test(canvasId)
 
     // fonction qui se lance dès le lancement de la page
 
-    window.onload = function(){
-        requestAnimationFrame(loop);
-        startTime = performance.now();
-        // console.log("starttime",startTime);
-        setInterval(ennemy, 800);
-    };
+    // window.onload = function(){
+    //     requestAnimationFrame(loop);
+    //     startTime = performance.now();
+    //     console.log("starttime",startTime);
+    //     intervalId = setInterval(ennemy, 800);
+    // };
 
 
     function Collision(xRed, yRed, xBlack, yBlack, widthRed, heightRed, widthBlack, heightBlack) 
@@ -62,14 +89,25 @@ export default function test(canvasId)
             yRed + heightRed > yBlack
         ) {
             status = true;
+             onGameOver(false);
+             console.log("gameover ?");
+             setScore();
+             
         }
+    }
+
+    // fonction pour ajouter le score
+    
+    const setScore = async () => {
+        const scoreInit = await axios.post("/api/addScore", {name: name, score: score});
+
     }
 
     // boucle principale (infinie) du jeu
 
     function loop() 
     { 
-        let animationId = requestAnimationFrame(loop);
+        animationId = requestAnimationFrame(loop);
         var now = performance.now();
         var deltaSeconds = (now - lastFrameTime) / 1000;
         lastFrameTime = now;
@@ -77,7 +115,12 @@ export default function test(canvasId)
 
     draw(deltaSeconds, elapsedTime);
         if (status === true)
+        {   
             cancelAnimationFrame(animationId);
+            console.log("euh?");
+        }
+           
+            
     
     }
 
@@ -99,7 +142,6 @@ export default function test(canvasId)
        
 
         // Dessiner l'image en arrière-plan
-        console.log("xpos",xpos);
         context.save();
         context.translate(-xpos, 0);
         
@@ -141,9 +183,14 @@ export default function test(canvasId)
             context.fillStyle = 'black';
             context.fillText(score, 50, 50);
 
+
+            context.font = '24px Arial';
+            context.fillStyle = 'black';
+            context.fillText(name, 900, 50);
+
        
 
-            
+
 
     }
 
@@ -203,10 +250,12 @@ export default function test(canvasId)
 
     function startJump() 
     {
+      
         if (dino.y === dinoY)
         {
             dino.jumpCount++;
             velocityY = -15;
+            console.log(velocityY);
         } 
         else if (dino.jumpCount === 1)
         {
@@ -214,12 +263,28 @@ export default function test(canvasId)
             velocityY = -10;
         }
     }
+
+    function rePlay() {
+
+        clearInterval(intervalId);
+        resetGame();
+        setTimeout(() => {
+          requestAnimationFrame(loop);
+          startTime = performance.now();
+          intervalId = setInterval(ennemy, 800);
+        }, 200); // Ajoutez un délai de 100 millisecondes pour éviter une exécution concurrente
+      };
     
+
+
+
     return {
         start: function() {
+            
         },
         jump: function() {
             startJump();
-        }
+        },
+        rePlay: rePlay,
     };
 }
