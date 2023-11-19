@@ -44,7 +44,7 @@ export default function Classement({game}){
             {allUser.map((user) => (
                <div className=" border flex justify-between px-4 mb-1" key={user.id}>
                 <img className="h-8 border border-black rounded-full w-8" src={FranceFlag}/>
-                <p>{user.name}</p>
+                <p>{user.name.slice(0,7)}</p>
                 <p>{user.score}</p>
                 </div>
             ))}
