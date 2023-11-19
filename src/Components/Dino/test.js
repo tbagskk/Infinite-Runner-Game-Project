@@ -109,29 +109,39 @@ let enemyInterval = 800;
 
     // boucle principale (infinie) du jeu
 
-    function loop(timestamp) 
-    { 
-        const deltaTime = timestamp - lastTime;
+    let fps = 60;
+    let eachNthFrame = Math.round((1000 / fps) / 16.66);
+    let frameCount = eachNthFrame;
 
-        animationId = requestAnimationFrame(loop);
-        var now = performance.now();
-        var deltaSeconds = (now - lastFrameTime) / 1000;
-        lastFrameTime = now;
-        var elapsedTime = (now - startTime) / 1000;
-
-    draw(deltaSeconds, elapsedTime);
-        if (status === true)
-        {   
-            cancelAnimationFrame(animationId);
-            console.log("euh?");
-        }
-           
-        if (deltaTime >= enemyInterval) {
-            ennemy(); // Exécutez la fonction enemy
-            lastTime = timestamp; // Mettez à jour le dernier temps
-          }
-            
     
+    function loop(timestamp) {
+      const deltaTime = timestamp - lastTime;
+    
+      var now = performance.now();
+      var deltaSeconds = (now - lastFrameTime) / 1000;
+      lastFrameTime = now;
+      var elapsedTime = (now - startTime) / 1000;
+    
+      if (frameCount === eachNthFrame) {
+        draw(deltaSeconds, elapsedTime);
+    
+        if (status === true) {
+          cancelAnimationFrame(animationId);
+          console.log("Game Over");
+          return;
+        }
+    
+        frameCount = 0;
+      }
+    
+      frameCount++;
+    
+      if (deltaTime >= enemyInterval) {
+        ennemy(); // Exécutez la fonction enemy
+        lastTime = timestamp; // Mettez à jour le dernier temps
+      }
+    
+      animationId = requestAnimationFrame(loop);
     }
 
     function draw(delta,elapsedTime) 
