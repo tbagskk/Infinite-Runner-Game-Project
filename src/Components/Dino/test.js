@@ -22,7 +22,10 @@ export default function test(canvasId, onGameOver, name, ChangeScore)
     let speed = 1;
     let intervalId;
     let animationId;
-    
+
+    // let animationId;
+let lastTime = 0;
+let enemyInterval = 800;
     
 
     let dino = {
@@ -106,8 +109,10 @@ export default function test(canvasId, onGameOver, name, ChangeScore)
 
     // boucle principale (infinie) du jeu
 
-    function loop() 
+    function loop(timestamp) 
     { 
+        const deltaTime = timestamp - lastTime;
+
         animationId = requestAnimationFrame(loop);
         var now = performance.now();
         var deltaSeconds = (now - lastFrameTime) / 1000;
@@ -121,6 +126,10 @@ export default function test(canvasId, onGameOver, name, ChangeScore)
             console.log("euh?");
         }
            
+        if (deltaTime >= enemyInterval) {
+            ennemy(); // Exécutez la fonction enemy
+            lastTime = timestamp; // Mettez à jour le dernier temps
+          }
             
     
     }
@@ -272,7 +281,7 @@ export default function test(canvasId, onGameOver, name, ChangeScore)
         setTimeout(() => {
           requestAnimationFrame(loop);
           startTime = performance.now();
-          intervalId = setInterval(ennemy, 800);
+        //   intervalId = setInterval(ennemy, 800);
         }, 200); // Ajoutez un délai de 100 millisecondes pour éviter une exécution concurrente
       };
     
