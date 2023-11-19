@@ -111,7 +111,7 @@ function Dino() {
                 Play
             </button>) }
             {open && <Name close={close} setCookie={setNameCookie}/>}
-            <Classement users={allUser} game={GameState}/>
+            {!GameState && <Classement users={allUser} game={GameState}/>}
             
         </div>
     );
