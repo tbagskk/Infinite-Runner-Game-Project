@@ -102,7 +102,7 @@ function Dino() {
                         width={1000}
                         height={500}
                         style = {{width: '60%', height: '100', overflow: 'hidden', position: 'relative' }} 
-                        className="border bg-white rounded "
+                        className="border bg-white rounded black"
                 />
             </div>
             {!GameState && (<button onClick={RePlay} className='rounded border border-black absolute flex justify-center items-center h-12 w-28'>
