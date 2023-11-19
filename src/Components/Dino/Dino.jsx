@@ -73,9 +73,11 @@ function Dino() {
 
         getUsers();
         const handleKeyDown = (event) => {
-            if (event.code === 'Space') {
-                gameRef.current.jump();
-            }
+            if (gameRef.current) {
+                if (event.code === 'Space') {
+                  gameRef.current.jump();
+                }
+              }
             console.log("saut");
         }
 
@@ -94,14 +96,14 @@ function Dino() {
 
     return (
    
-        <div className='bg-slate-600 h-screen w-full flex justify-center items-center flex-row min-h-full'>
-            <div className=' h-screen w-full flex justify-center items-center '>
+    <div className='absolute bg-slate-600 h-60 w-4/6 flex justify-center items-center flex-row '>
+            <div className='  h-screen w-full flex justify-center items-center '>
                 <canvas
                         id = "test"
                         ref={canvasRef}
                         width={1000}
                         height={500}
-                        style = {{width: '60%', height: '100', overflow: 'hidden', position: 'relative' }} 
+                        style = {{width: '100%', height: '100', overflow: 'hidden', position: 'relative' }} 
                         className="border bg-white rounded black"
                 />
             </div>

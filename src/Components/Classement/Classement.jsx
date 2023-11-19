@@ -17,7 +17,7 @@ export default function Classement({game}){
             return user;
         });
         updatedAllUser.sort((a, b) => b.score - a.score);
-        updatedAllUser = updatedAllUser.slice(0, 7);
+        updatedAllUser = updatedAllUser.slice(0, 5);
         setAllUser(updatedAllUser);
         ;}
         
@@ -39,10 +39,10 @@ export default function Classement({game}){
     },[]);
 
     return (
-        <div className='bg-white h-86 w-52 rounded absolute right-20 text-xl'>
-            <p className='mb-4 mt-2 font-bold'>CLASSEMENT</p>
+        <div className='border border-black bg-white h-60 w-52 rounded absolute right-20  text-xl'>
+            <p className='mb-2 mt-2 font-bold'>CLASSEMENT</p>
             {allUser.map((user) => (
-               <div className=" border flex justify-between px-4 mb-2" key={user.id}>
+               <div className=" border flex justify-between px-4 mb-1" key={user.id}>
                 <img className="h-8 border border-black rounded-full w-8" src={FranceFlag}/>
                 <p>{user.name}</p>
                 <p>{user.score}</p>
