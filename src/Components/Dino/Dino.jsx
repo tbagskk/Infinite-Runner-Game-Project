@@ -76,6 +76,12 @@ function Dino() {
             if (gameRef.current) {
                 if (event.code === 'Space' || event.code === 'ArrowUp') {
                   gameRef.current.jump();
+                  if (!GameState)
+                  {
+                    setGameState(true);
+                    RePlay();
+                  }
+                    
                 }
               }
             console.log("saut");

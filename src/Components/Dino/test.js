@@ -11,7 +11,7 @@ export default function test(canvasId, onGameOver, name, ChangeScore)
     let width = 1200;
     let status = false;
     let velocityY = 0;
-    let gravity = .6;
+    let gravity = 1;
     let dinoY = 500 - 50 ;
     let cubes = [];
     var totalSeconds = 0;
@@ -41,7 +41,7 @@ let enemyInterval = 800;
     function resetGame() {
         status = false;
         velocityY = 0;
-        gravity = 0.6;
+        gravity = 5;
         dinoY = 500 - 50;
         cubes = [];
         totalSeconds = 0;
@@ -190,6 +190,7 @@ let enemyInterval = 800;
 
         // permet de maintenir une gravité constante
         velocityY += gravity;
+        
         dino.y = Math.min(dino.y + velocityY, dinoY);
 
 
