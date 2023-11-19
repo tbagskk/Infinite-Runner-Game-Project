@@ -3,7 +3,7 @@ import FrImg from './francepng.png';
 import AlImg from '../Home/algerie.svg';
 import axios from 'axios';
 
-export default function test(canvasId, onGameOver, name) 
+export default function test(canvasId, onGameOver, name, ChangeScore) 
 {
 
     console.log("name ?", name);
@@ -92,6 +92,7 @@ export default function test(canvasId, onGameOver, name)
              onGameOver(false);
              console.log("gameover ?");
              setScore();
+            //  ChangeScore();
              
         }
     }
