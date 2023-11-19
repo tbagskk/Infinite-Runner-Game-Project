@@ -74,7 +74,7 @@ function Dino() {
         getUsers();
         const handleKeyDown = (event) => {
             if (gameRef.current) {
-                if (event.code === 'Space') {
+                if (event.code === 'Space' || event.code === 'ArrowUp') {
                   gameRef.current.jump();
                 }
               }
