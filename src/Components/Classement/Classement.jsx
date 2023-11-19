@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import FranceFlag from './francepng.png';
 
 export default function Classement({game}){
 
@@ -38,10 +39,11 @@ export default function Classement({game}){
     },[]);
 
     return (
-        <div className='bg-white h-72 w-44 rounded absolute right-20 text-xl'>
+        <div className='bg-white h-86 w-52 rounded absolute right-20 text-xl'>
             <p className='mb-4 mt-2 font-bold'>CLASSEMENT</p>
             {allUser.map((user) => (
-               <div className=" border flex justify-between px-4 mb-1" key={user.id}>
+               <div className=" border flex justify-between px-4 mb-2" key={user.id}>
+                <img className="h-8 border border-black rounded-full w-8" src={FranceFlag}/>
                 <p>{user.name}</p>
                 <p>{user.score}</p>
                 </div>

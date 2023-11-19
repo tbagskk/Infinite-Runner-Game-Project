@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
+
 export default function Name({close, setCookie}){
 
     const [name, setName] = useState(null);
@@ -29,7 +30,7 @@ export default function Name({close, setCookie}){
 
     return (
         <div className='absolute  h-40 w-80'>
-        {theDiv && (<div className='bg-red-600 border rounded border-black h-40 w-80 absolute flex justify-center items-center flex-col '>
+        {theDiv && (<div className='bg-slate-600 border rounded  h-40 w-80 absolute flex justify-center items-center flex-col '>
           
             <input 
                 type="text"
@@ -37,7 +38,7 @@ export default function Name({close, setCookie}){
                 className='rounded w-52 h-14 flex justify-center items-center text-center border border-red-200'
                 onChange={handleNameChange}
             />
-            <button onClick={test2} className='w-52 h-8 border border-black rounded mt-2 active:bg-red-200'>
+            <button onClick={test2} className='w-52 h-8 bg-white rounded mt-2 active:bg-white' disabled={!name}>
                 Enter
             </button>
  
