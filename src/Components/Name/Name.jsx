@@ -19,14 +19,21 @@ export default function Name({close}){
         setDiv(false);
         close();
         const response = await axios.post("/api/test", { name: name});
+        console.log("caca");
+        
+        // console.log("caca");
+        const cookieHeaderValue = response.headers['Set-Cookie'];
+        console.log(cookieHeaderValue);
         // const score = await axios.post("/api/addScore", {name: name, score: 800});
     }
 
     const handleNameChange = (event) => {
 
+       
+
         const UserCookie = {
             name: event.target.value,
-            skin: "2"
+            skin: "2",
         }
         const userJSON = JSON.stringify(UserCookie);
         setName(event.target.value);

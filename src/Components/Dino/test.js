@@ -6,6 +6,8 @@ import Musique from './Musique2.mp3';
 import Img3 from '../../Images/chat2.png';
 import Img4 from '../../Images/red.png';
 
+import Bg1 from '../../Images/bg1.png';
+
 export default function test(canvasId, onGameOver, name, ChangeScore, skin) 
 {
 
@@ -77,7 +79,7 @@ let enemyInterval = 800;
     const skin3 = new Image();
     const skin4 = new Image();
 
-    backgroundImage.src = jeuImg;
+    backgroundImage.src = Bg1;
     skinFrance.src = FrImg;
     skin2.src = Img3;
     skin3.src = Img4;
@@ -194,6 +196,8 @@ let deltaTime2 = 0;
     function draw(delta,elapsedTime) 
     {
 
+        
+
         totalSeconds += delta;
         dino.isCollised = false;
 
@@ -203,9 +207,11 @@ let deltaTime2 = 0;
 
         var numImages = Math.ceil(canvas.width / backgroundImage.width) + 1;
         var xpos = (totalSeconds * vx) % backgroundImage.width;
-
+        
         context.clearRect(0, 0, canvas.width, canvas.height);
 
+        // context.fillStyle = "#FF6969";
+        // context.fillRect(0,0,200,200);
        
 
         // Dessiner l'image en arrière-plan
