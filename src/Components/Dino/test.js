@@ -11,7 +11,7 @@ export default function test(canvasId, onGameOver, name, ChangeScore)
     let width = 1200;
     let status = false;
     let velocityY = 0;
-    let gravity = 1;
+    let gravity = 0.6;
     let dinoY = 500 - 50 ;
     let cubes = [];
     var totalSeconds = 0;
@@ -41,7 +41,7 @@ let enemyInterval = 800;
     function resetGame() {
         status = false;
         velocityY = 0;
-        gravity = 5;
+        gravity = 0.6;
         dinoY = 500 - 50;
         cubes = [];
         totalSeconds = 0;
@@ -115,7 +115,7 @@ let enemyInterval = 800;
     function loop(timestamp) 
     { 
         const deltaTime = timestamp - lastTime;
-        // animationId = requestAnimationFrame(loop);
+         animationId = requestAnimationFrame(loop);
         
         var now = performance.now();
         var deltaSeconds = (now - lastFrameTime) / 1000;
@@ -134,17 +134,17 @@ let enemyInterval = 800;
             console.log("euh?");
         }
            
-        // if (deltaTime >= enemyInterval) {
-        //     ennemy(); // Exécutez la fonction enemy
-        //     lastTime = timestamp; // Mettez à jour le dernier temps
+        if (deltaTime >= enemyInterval) {
+            ennemy(); // Exécutez la fonction enemy
+            lastTime = timestamp; // Mettez à jour le dernier temps
             
-        //   }
-        
-          if (status === true) {
-            console.log("euh?");
-          } else {
-            setTimeout(loop, 1000 / fps);
           }
+        
+        //   if (status === true) {
+        //     console.log("euh?");
+        //   } else {
+        //     setTimeout(loop, 1000 / fps);
+        //   }
 
             
     
@@ -190,7 +190,7 @@ let enemyInterval = 800;
 
         // permet de maintenir une gravité constante
         velocityY += gravity;
-        
+
         dino.y = Math.min(dino.y + velocityY, dinoY);
 
 
@@ -298,7 +298,7 @@ let enemyInterval = 800;
         setTimeout(() => {
           requestAnimationFrame(loop);
           startTime = performance.now();
-           intervalId = setInterval(ennemy, 800);
+        //    intervalId = setInterval(ennemy, 800);
         }, 200); // Ajoutez un délai de 100 millisecondes pour éviter une exécution concurrente
       };
     

@@ -47,6 +47,7 @@ function Dino() {
 
 
     const onGameOver = (result) => {
+        console.log("result",result);
         setGameState(result);
       };
 
@@ -76,15 +77,10 @@ function Dino() {
             if (gameRef.current) {
                 if (event.code === 'Space' || event.code === 'ArrowUp') {
                   gameRef.current.jump();
-                  if (!GameState)
-                  {
-                    setGameState(true);
-                    RePlay();
-                  }
-                    
+    
+                  
                 }
               }
-            console.log("saut");
         }
 
         window.addEventListener('keydown', handleKeyDown);
@@ -94,10 +90,14 @@ function Dino() {
         };
 
        
-
+       
         
 
     }, [])
+
+    useEffect(() =>{
+        console.log("use", GameState);
+    },[GameState])
 
 
     return (
