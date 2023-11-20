@@ -42,7 +42,6 @@ function Dino() {
         });
         
         setAllUser(updatedAllUser);
-        console.log(allUser);
         setAllUser("caca");
         ;}
         
@@ -113,7 +112,7 @@ function Dino() {
     }, [])
 
     const testSpace = (event) => {
-        if (event.code === 'Space')
+        if (event.code === 'Space'|| event.code === 'ArrowUp')
             if (gameRef.current)
                 if((GameState === false) && (open === false))
                     RePlay();
@@ -121,7 +120,6 @@ function Dino() {
     }
 
     useEffect(() =>{
-        console.log("QUEL ETAT FDP", GameState);
         window.addEventListener('keydown', testSpace);
     return () => {
       window.removeEventListener('keydown', testSpace);

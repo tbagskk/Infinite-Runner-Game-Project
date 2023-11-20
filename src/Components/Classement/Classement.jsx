@@ -42,7 +42,6 @@ export default function Classement({game}){
 
     useEffect(() => {
         getUsers();
-        console.log("game",game);
     },[game]);
 
     useEffect(() => {

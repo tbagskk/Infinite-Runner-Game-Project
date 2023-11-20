@@ -8,7 +8,7 @@ module.exports = async (req, res) => {
     let theName = req.body.name;
     let newScore = req.body.score;
     let skin = req.body.skin;
-    console.log("skin",skin);
+    let nbgame;
     console.log("Function invoked add Score");
 
     const existingUser = await prisma.user.findFirst({
@@ -18,6 +18,7 @@ module.exports = async (req, res) => {
       });
       console.log("le user",);
     let formerScore = existingUser.score;
+    nbgame = existingUser.nbgame;
 
     if (newScore > formerScore)
     {
@@ -43,6 +44,7 @@ module.exports = async (req, res) => {
           },
           data: {
             skin: skin,
+            nbgame: (nbgame + 1)
           },
         });
       }

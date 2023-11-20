@@ -9,7 +9,6 @@ import Img4 from '../../Images/red.png';
 export default function test(canvasId, onGameOver, name, ChangeScore, skin) 
 {
 
-    console.log("name ?", name);
     let height = 500;
     let width = 1200;
     let status = false;
@@ -90,7 +89,6 @@ let enemyInterval = 800;
     // window.onload = function(){
     //     requestAnimationFrame(loop);
     //     startTime = performance.now();
-    //     console.log("starttime",startTime);
     //     intervalId = setInterval(ennemy, 800);
     // };
 
@@ -115,7 +113,6 @@ let enemyInterval = 800;
         ) {
             status = true;
              onGameOver(false);
-             console.log("gameover ?");
              setScore();
             //  ChangeScore();
              
@@ -141,58 +138,56 @@ let previousTime = startTime2;
 let currentTime = 0;
 let deltaTime2 = 0;
 
-function animationLoop(timestamp) {
- 
-}
-requestAnimationFrame(animationLoop);
 
 
     function loop(timestamp) 
     { 
         
-        currentTime = timestamp;
-        deltaTime2 = currentTime-previousTime;
-       
         
-        const deltaTime = timestamp - lastTime;
-         animationId = requestAnimationFrame(loop);
-        
-        var now = performance.now();
-        var deltaSeconds = (now - lastFrameTime) / 1000;
-        lastFrameTime = now;
-        var elapsedTime = (now - startTime) / 1000;
-
-      
-        if (deltaTime2 > interval) {
-            previousTime = currentTime-(deltaTime2 % interval);
-            draw(deltaSeconds, elapsedTime);
-          }
 
 
         // draw(deltaSeconds, elapsedTime);
-
+        if (status === false)
+        {
+            currentTime = timestamp;
+            deltaTime2 = currentTime-previousTime;
+           
+            
+            const deltaTime = timestamp - lastTime;
+             
+            animationId = requestAnimationFrame(loop);
+            var now = performance.now();
+            var deltaSeconds = (now - lastFrameTime) / 1000;
+            lastFrameTime = now;
+            var elapsedTime = (now - startTime) / 1000;
+    
+          
+            if (deltaTime2 > interval) {
+                previousTime = currentTime-(deltaTime2 % interval);
+                draw(deltaSeconds, elapsedTime);
+              }
+              if (deltaTime >= enemyInterval) {
+                ennemy(); // Exécutez la fonction enemy
+                lastTime = timestamp; // Mettez à jour le dernier temps
+                
+              }
+        }
         
-        if (status === true)
+        else if (status === true)
         {   
             cancelAnimationFrame(animationId);
             muse.pause();
             muse.currentTime = 0;
-            console.log("euh?");
         }
            
-        if (deltaTime >= enemyInterval) {
-            ennemy(); // Exécutez la fonction enemy
-            lastTime = timestamp; // Mettez à jour le dernier temps
-            
-          }
+        
         
         //   if (status === true) {
-        //     console.log("euh?");
         //   } else {
         //     setTimeout(loop, 1000 / fps);
         //   }
 
-            
+        
     
     }
 
@@ -276,7 +271,6 @@ requestAnimationFrame(animationLoop);
 
     function ennemy()
     {
-        // console.log("jsp");
 
         var nbr = Math.random();
 
@@ -335,7 +329,6 @@ requestAnimationFrame(animationLoop);
         {
             dino.jumpCount++;
             velocityY = -15;
-            console.log(velocityY);
         } 
         else if (dino.jumpCount === 1)
         {

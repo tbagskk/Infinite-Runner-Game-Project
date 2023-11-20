@@ -14,9 +14,7 @@ export default function RePlay({RePLay}){
        
          const handleWheel = (event) => {
             if (event.code === 'Space' || event.code === 'ArrowUp') {
-                console.log("JUUUUUUUUUUUUUUUMP");
-
-                
+    
               }
         };
 

@@ -27,7 +27,6 @@ export default function test(canvasId) {
         context.clearRect(0, 0, canvas.width, canvas.height);
 
         velocityY += gravity;
-        console.log(velocityY);
 
         
         // dino.x += 10;
@@ -56,7 +55,7 @@ export default function test(canvasId) {
         context.fillStyle = 'black';
         context.fillRect(dino.x , dino.y, 50,50 );
 
-        //  console.log("test->",dino.y);
+
         
     }
 

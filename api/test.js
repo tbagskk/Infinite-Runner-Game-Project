@@ -28,6 +28,8 @@ module.exports = async (req, res) => {
         data: {
           name,
           score:0,
+          nbgame:0,
+          skin:'default_skin'
         },
       });
       console.log('User created:', newUser);

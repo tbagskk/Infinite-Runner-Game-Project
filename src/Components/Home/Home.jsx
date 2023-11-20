@@ -45,7 +45,6 @@ const VoteComponent = () => {
     }
     else
     {
-        console.log("caca");
         country = 'Allemagne';
         if (sign === '+')
             setVotes((prevVotes) => ({ ...prevVotes, [country]: prevVotes[country] + 1 }));
