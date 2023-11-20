@@ -111,9 +111,27 @@ let enemyInterval = 800;
 
     let fps = 60;
 
+    // set the expected frame rate
+let frames_per_sec = 60;
+let interval = Math.floor(1000 / frames_per_sec);
+let startTime2 = performance.now();
+let previousTime = startTime2;
+let currentTime = 0;
+let deltaTime2 = 0;
+
+function animationLoop(timestamp) {
+ 
+}
+requestAnimationFrame(animationLoop);
+
 
     function loop(timestamp) 
     { 
+        
+        currentTime = timestamp;
+        deltaTime2 = currentTime-previousTime;
+       
+        
         const deltaTime = timestamp - lastTime;
          animationId = requestAnimationFrame(loop);
         
@@ -123,9 +141,13 @@ let enemyInterval = 800;
         var elapsedTime = (now - startTime) / 1000;
 
       
+        if (deltaTime2 > interval) {
+            previousTime = currentTime-(deltaTime2 % interval);
+            draw(deltaSeconds, elapsedTime);
+          }
 
 
-        draw(deltaSeconds, elapsedTime);
+        
 
         
         if (status === true)
