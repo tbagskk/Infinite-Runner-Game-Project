@@ -2,6 +2,7 @@ import jeuImg from './map3.png';
 import FrImg from './francepng.png';
 import AlImg from '../Home/algerie.svg';
 import axios from 'axios';
+import Musique from './Musique2.mp3';
 
 export default function test(canvasId, onGameOver, name, ChangeScore) 
 {
@@ -22,6 +23,9 @@ export default function test(canvasId, onGameOver, name, ChangeScore)
     let speed = 1;
     let intervalId;
     let animationId;
+
+    let muse = document.createElement("audio");
+    muse.src = Musique;
 
     // let animationId;
 let lastTime = 0;
@@ -153,6 +157,7 @@ requestAnimationFrame(animationLoop);
         if (status === true)
         {   
             cancelAnimationFrame(animationId);
+            muse.pause();
             console.log("euh?");
         }
            
@@ -316,6 +321,7 @@ requestAnimationFrame(animationLoop);
     function rePlay() {
 
         clearInterval(intervalId);
+        muse.play();
         resetGame();
         setTimeout(() => {
           requestAnimationFrame(loop);
