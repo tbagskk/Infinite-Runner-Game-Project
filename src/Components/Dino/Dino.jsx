@@ -6,6 +6,7 @@ import Name from '../Name/Name.jsx';
 import test from './test.js';
 import Game from './Game.js';
 import Classement from '../Classement/Classement.jsx';
+import PlayAgain from '../Replay/Replay.jsx';
 
 
 
@@ -22,6 +23,10 @@ function Dino() {
     const gameRef = useRef(null);
     const [name, setName] = useState("");
     const [allUser, setAllUser] = useState([]);
+
+
+
+    const [inGame, setInGame] = useState(false); // etat du jeu (en cours ou pas)
 
     const url = "/api/getScore";
 
@@ -49,6 +54,8 @@ function Dino() {
     const onGameOver = (result) => {
         console.log("result",result);
         setGameState(result);
+        // setInGame(false);
+
       };
 
      
@@ -56,6 +63,7 @@ function Dino() {
         if (gameRef.current) {
             gameRef.current.rePlay();
             setGameState(true);
+
         }
     };
     
@@ -77,10 +85,12 @@ function Dino() {
             if (gameRef.current) {
                 if (event.code === 'Space' || event.code === 'ArrowUp') {
                   gameRef.current.jump();
-    
+
                   
                 }
               }
+
+            
         }
 
         window.addEventListener('keydown', handleKeyDown);
@@ -96,7 +106,7 @@ function Dino() {
     }, [])
 
     useEffect(() =>{
-        console.log("use", GameState);
+        console.log("QUEL ETAT FDP", GameState);
     },[GameState])
 
 
@@ -116,7 +126,9 @@ function Dino() {
             {!GameState && (<button onClick={RePlay} className='rounded border border-black absolute flex justify-center items-center h-12 w-28'>
                 Play
             </button>) }
+
             {open && <Name close={close} setCookie={setNameCookie}/>}
+
             {!GameState && <Classement users={allUser} game={GameState}/>}
             
         </div>

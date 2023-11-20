@@ -113,7 +113,7 @@ let enemyInterval = 800;
 
     // boucle principale (infinie) du jeu
 
-    let fps = 60;
+    let fps = 80;
 
     // set the expected frame rate
 let frames_per_sec = 60;
@@ -137,7 +137,7 @@ requestAnimationFrame(animationLoop);
        
         
         const deltaTime = timestamp - lastTime;
-         animationId = requestAnimationFrame(loop);
+        //  animationId = requestAnimationFrame(loop);
         
         var now = performance.now();
         var deltaSeconds = (now - lastFrameTime) / 1000;
@@ -145,13 +145,13 @@ requestAnimationFrame(animationLoop);
         var elapsedTime = (now - startTime) / 1000;
 
       
-        if (deltaTime2 > interval) {
-            previousTime = currentTime-(deltaTime2 % interval);
-            draw(deltaSeconds, elapsedTime);
-          }
+        // if (deltaTime2 > interval) {
+        //     previousTime = currentTime-(deltaTime2 % interval);
+        //     draw(deltaSeconds, elapsedTime);
+        //   }
 
 
-        
+        draw(deltaSeconds, elapsedTime);
 
         
         if (status === true)
@@ -161,17 +161,17 @@ requestAnimationFrame(animationLoop);
             console.log("euh?");
         }
            
-        if (deltaTime >= enemyInterval) {
-            ennemy(); // Exécutez la fonction enemy
-            lastTime = timestamp; // Mettez à jour le dernier temps
+        // if (deltaTime >= enemyInterval) {
+        //     ennemy(); // Exécutez la fonction enemy
+        //     lastTime = timestamp; // Mettez à jour le dernier temps
             
-          }
-        
-        //   if (status === true) {
-        //     console.log("euh?");
-        //   } else {
-        //     setTimeout(loop, 1000 / fps);
         //   }
+        
+          if (status === true) {
+            console.log("euh?");
+          } else {
+            setTimeout(loop, 1000 / fps);
+          }
 
             
     
@@ -326,7 +326,7 @@ requestAnimationFrame(animationLoop);
         setTimeout(() => {
           requestAnimationFrame(loop);
           startTime = performance.now();
-        //    intervalId = setInterval(ennemy, 800);
+           intervalId = setInterval(ennemy, 800);
         }, 200); // Ajoutez un délai de 100 millisecondes pour éviter une exécution concurrente
       };
     
