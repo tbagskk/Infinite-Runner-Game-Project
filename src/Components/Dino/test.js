@@ -3,8 +3,10 @@ import FrImg from './francepng.png';
 import AlImg from '../Home/algerie.svg';
 import axios from 'axios';
 import Musique from './Musique2.mp3';
+import Img3 from '../../Images/chat2.png';
+import Img4 from '../../Images/red.png';
 
-export default function test(canvasId, onGameOver, name, ChangeScore) 
+export default function test(canvasId, onGameOver, name, ChangeScore, skin) 
 {
 
     console.log("name ?", name);
@@ -70,13 +72,19 @@ let enemyInterval = 800;
     const canvas = document.getElementById(canvasId);
     const context = canvas.getContext('2d');
     const backgroundImage = new Image();
+
     const skinFrance = new Image();
     const skin2 = new Image();
+    const skin3 = new Image();
+    const skin4 = new Image();
 
     backgroundImage.src = jeuImg;
     skinFrance.src = FrImg;
-    skin2.src = AlImg;
+    skin2.src = Img3;
+    skin3.src = Img4;
 
+
+    
     // fonction qui se lance dès le lancement de la page
 
     // window.onload = function(){
@@ -86,6 +94,16 @@ let enemyInterval = 800;
     //     intervalId = setInterval(ennemy, 800);
     // };
 
+
+    function chooseSkin(skin)
+    {
+        if (skin === "default_skin")
+            return (skinFrance);
+        else if (skin === "2")
+            return (skin2);
+        else if (skin === "3")
+            return (skin3);
+    }
 
     function Collision(xRed, yRed, xBlack, yBlack, widthRed, heightRed, widthBlack, heightBlack) 
     {
@@ -107,13 +125,13 @@ let enemyInterval = 800;
     // fonction pour ajouter le score
     
     const setScore = async () => {
-        const scoreInit = await axios.post("/api/addScore", {name: name, score: score});
+        const scoreInit = await axios.post("/api/addScore", {name: name, score: score, skin: skin});
 
     }
 
     // boucle principale (infinie) du jeu
 
-    let fps = 80;
+    let fps = 60;
 
     // set the expected frame rate
 let frames_per_sec = 60;
@@ -137,7 +155,7 @@ requestAnimationFrame(animationLoop);
        
         
         const deltaTime = timestamp - lastTime;
-        //  animationId = requestAnimationFrame(loop);
+         animationId = requestAnimationFrame(loop);
         
         var now = performance.now();
         var deltaSeconds = (now - lastFrameTime) / 1000;
@@ -145,33 +163,34 @@ requestAnimationFrame(animationLoop);
         var elapsedTime = (now - startTime) / 1000;
 
       
-        // if (deltaTime2 > interval) {
-        //     previousTime = currentTime-(deltaTime2 % interval);
-        //     draw(deltaSeconds, elapsedTime);
-        //   }
+        if (deltaTime2 > interval) {
+            previousTime = currentTime-(deltaTime2 % interval);
+            draw(deltaSeconds, elapsedTime);
+          }
 
 
-        draw(deltaSeconds, elapsedTime);
+        // draw(deltaSeconds, elapsedTime);
 
         
         if (status === true)
         {   
             cancelAnimationFrame(animationId);
             muse.pause();
+            muse.currentTime = 0;
             console.log("euh?");
         }
            
-        // if (deltaTime >= enemyInterval) {
-        //     ennemy(); // Exécutez la fonction enemy
-        //     lastTime = timestamp; // Mettez à jour le dernier temps
+        if (deltaTime >= enemyInterval) {
+            ennemy(); // Exécutez la fonction enemy
+            lastTime = timestamp; // Mettez à jour le dernier temps
             
-        //   }
-        
-          if (status === true) {
-            console.log("euh?");
-          } else {
-            setTimeout(loop, 1000 / fps);
           }
+        
+        //   if (status === true) {
+        //     console.log("euh?");
+        //   } else {
+        //     setTimeout(loop, 1000 / fps);
+        //   }
 
             
     
@@ -223,7 +242,7 @@ requestAnimationFrame(animationLoop);
 
          // Dessiner le carré rouge
         context.fillStyle = 'red';
-        context.drawImage(skinFrance,dino.x, dino.y, 50, 50);
+        context.drawImage(chooseSkin(skin),dino.x, dino.y, 50, 50);
      
         if (dino.y === dinoY)
             dino.jumpCount = 0;
@@ -235,12 +254,19 @@ requestAnimationFrame(animationLoop);
         
             context.font = '24px Arial';
             context.fillStyle = 'black';
+            context.imageSmoothingQuality = 'high';
             context.fillText(score, 50, 50);
+
+//             const lineWidth = 1;
+// context.lineWidth = lineWidth;
+// context.strokeStyle = 'black';
+// context.strokeText(score, 50, 50);
 
 
             context.font = '24px Arial';
             context.fillStyle = 'black';
             context.fillText(name, 900, 50);
+            context.imageSmoothingEnabled = false;
 
        
 
@@ -326,7 +352,7 @@ requestAnimationFrame(animationLoop);
         setTimeout(() => {
           requestAnimationFrame(loop);
           startTime = performance.now();
-           intervalId = setInterval(ennemy, 800);
+        //    intervalId = setInterval(ennemy, 800);
         }, 200); // Ajoutez un délai de 100 millisecondes pour éviter une exécution concurrente
       };
     

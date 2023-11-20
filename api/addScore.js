@@ -7,6 +7,8 @@ module.exports = async (req, res) => {
 
     let theName = req.body.name;
     let newScore = req.body.score;
+    let skin = req.body.skin;
+    console.log("skin",skin);
     console.log("Function invoked add Score");
 
     const existingUser = await prisma.user.findFirst({
@@ -25,6 +27,7 @@ module.exports = async (req, res) => {
             },
             data: {
               score: newScore,
+              skin: skin,
             },
           });
     
@@ -33,6 +36,16 @@ module.exports = async (req, res) => {
 
       console.log('User score updated:', updatedUser);
       return updatedUser;}
+      else {
+        const updatedUser = await prisma.user.updateMany({
+          where: {
+            name: theName, // Remplacez 'id' par la clé primaire réelle que vous utilisez
+          },
+          data: {
+            skin: skin,
+          },
+        });
+      }
     } catch (error) {
       console.error('Error updating user score:', error);
       throw error;

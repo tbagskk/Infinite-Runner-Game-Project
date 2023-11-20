@@ -43,7 +43,7 @@ export default function Country({}){
                         className="border bg-white rounded black opacity-40"
                 />
                 <Dino/>
-    
+                <p className='absolute bottom-10 font-medium text-slate-600 text-xl left-5'>Beta: 1.0</p>
         </div>
 
     )
