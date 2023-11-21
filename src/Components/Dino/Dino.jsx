@@ -101,12 +101,21 @@ function Dino() {
             
         }
 
+        const handleTouch = (event) => {
+            if (gameRef.current) {
+              
+                  gameRef.current.jump();
+
+                  
+                
+              }}
+
         window.addEventListener('keydown', handleKeyDown);
-        window.addEventListener('touchstart', handleKeyDown);
+        window.addEventListener('touchstart', handleTouch);
 
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
-            window.removeEventListener('touchstart', handleKeyDown);
+            window.removeEventListener('touchstart', handleTouch);
         };
 
     }, [])
