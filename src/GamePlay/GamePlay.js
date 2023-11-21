@@ -144,7 +144,7 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
             var deltaSeconds = (now - lastFrameTime) / 1000;
             lastFrameTime = now;
             var elapsedTime = (now - startTime) / 1000;
-    
+            
           
             if (deltaTime2 > interval) {
                 previousTime = currentTime-(deltaTime2 % interval);

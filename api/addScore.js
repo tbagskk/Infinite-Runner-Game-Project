@@ -8,6 +8,10 @@ const cookie = require('cookie'); // Ajout de l'importation du module cookie
 module.exports = async (req, res) => {
   try {
 
+
+    res.setHeader('Access-Control-Allow-Origin', 'https://cliks.vercel.app/');
+    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS,POST,GET');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   
   // protection de la route avec JWT
 
