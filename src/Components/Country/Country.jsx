@@ -15,7 +15,6 @@ export default function Country({}){
 
          const handleWheel = (event) => {
             const delta = event.deltaY;
-            console.log("delta", delta);
             canvaDraw.current.handleWheel(event);
            
             

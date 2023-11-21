@@ -40,6 +40,7 @@ module.exports = async (req, res) => {
       console.log("le user",);
     let formerScore = existingUser.score;
     nbgame = existingUser.nbgame;
+    console.log("nbgame",nbgame);
 
     if (newScore > formerScore)
     {
@@ -50,6 +51,7 @@ module.exports = async (req, res) => {
             data: {
               score: newScore,
               skin: skin,
+              nbgame: (nbgame + 1)
             },
           });
     

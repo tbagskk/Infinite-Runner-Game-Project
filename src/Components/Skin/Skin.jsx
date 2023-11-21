@@ -33,14 +33,16 @@ export default function Skin({setCookie, closeSkin}){
     
     return (
         <div className='absolute  h-40 w-80'>
-            <div className='bg-slate-600 border rounded  h-40 w-80 absolute flex justify-between items-center flex-row p-4 '>
-          
+            
+            <div className='bg-slate-600 border rounded  h-40 w-80  flex justify-between items-center flex-col p-4 '>
+            <p className='text-zinc-50 font-semibold'> Choose your skin </p>
+          <div className='h-40 w-80  flex justify-between items-center flex-row p-4 '>
                 <img onClick={() => {ChooseImg(2)}} className='cursor-pointer border-black border h-20 w-20 rounded-full' src={Img2}/>
 
                 <img onClick={() => {ChooseImg(1)}} className='cursor-pointer border-black border h-20 w-20 rounded-full' src={Img1}/>
 
                 <img onClick={() => {ChooseImg(3)}} className='cursor-pointer border-black border h-20 w-20 rounded-full' src={Img3}/>
-                
+        </div>
             
         
             

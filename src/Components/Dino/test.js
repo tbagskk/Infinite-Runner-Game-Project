@@ -1,12 +1,12 @@
 import jeuImg from './map3.png';
-import FrImg from './francepng.png';
+import FrImg from '../../Images/francepng.png';
 import AlImg from '../Home/algerie.svg';
 import axios from 'axios';
 import Musique from './Musique2.mp3';
 import Img3 from '../../Images/chat2.png';
 import Img4 from '../../Images/red.png';
 
-import Bg1 from '../../Images/bg1.png';
+import Bg1 from '../../Images/map3.png';
 
 export default function test(canvasId, onGameOver, name, ChangeScore, skin) 
 {
@@ -27,6 +27,10 @@ export default function test(canvasId, onGameOver, name, ChangeScore, skin)
     let intervalId;
     let animationId;
 
+    let cube = {
+        y: 500,
+    }
+
     let muse = document.createElement("audio");
     muse.src = Musique;
 
@@ -34,6 +38,7 @@ export default function test(canvasId, onGameOver, name, ChangeScore, skin)
 let lastTime = 0;
 let enemyInterval = 800;
     
+
 
     let dino = {
         x: 250,
@@ -258,22 +263,15 @@ let deltaTime2 = 0;
             context.imageSmoothingQuality = 'high';
             context.fillText(score, 50, 50);
 
-//             const lineWidth = 1;
-// context.lineWidth = lineWidth;
-// context.strokeStyle = 'black';
-// context.strokeText(score, 50, 50);
-
 
             context.font = '24px Arial';
             context.fillStyle = 'black';
             context.fillText(name, 900, 50);
             context.imageSmoothingEnabled = false;
 
-       
-
-
 
     }
+
 
     function ennemy()
     {
@@ -284,7 +282,7 @@ let deltaTime2 = 0;
         {
             const cub = {
                 x:1200,
-                y:500 - 50,
+                y:cube.y - 50,
                 xx: 50,
                 yy:50,
             };
@@ -294,7 +292,7 @@ let deltaTime2 = 0;
         {
             const cub = {
                 x:1200,
-                y:500 - 70,
+                y:cube.y - 70,
                 xx: 70,
                 yy:70,
             };
@@ -304,7 +302,7 @@ let deltaTime2 = 0;
         {
             const cub = {
                 x:1200,
-                y:500 - 90,
+                y:cube.y - 90,
                 xx: 90,
                 yy:90,
             };
@@ -314,7 +312,7 @@ let deltaTime2 = 0;
         {
             const cub = {
                 x:1200,
-                y:300,
+                y:cube.y - 200,
                 xx: 90,
                 yy:90,
             };

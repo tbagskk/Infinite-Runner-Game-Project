@@ -19,12 +19,7 @@ export default function Name({close}){
         setDiv(false);
         close();
         const response = await axios.post("/api/test", { name: name});
-        console.log("caca");
-        
-        // console.log("caca");
-        const cookieHeaderValue = response.headers['Set-Cookie'];
-        console.log(cookieHeaderValue);
-        // const score = await axios.post("/api/addScore", {name: name, score: 800});
+
     }
 
     const handleNameChange = (event) => {
@@ -38,7 +33,7 @@ export default function Name({close}){
         const userJSON = JSON.stringify(UserCookie);
         setName(event.target.value);
         Cookies.set('user', userJSON);
-        // setCookie();
+
       }
 
 
@@ -56,8 +51,12 @@ export default function Name({close}){
             <button onClick={test2} className='w-52 h-8 bg-white rounded mt-2 active:bg-white' disabled={!name}>
                 Enter
             </button>
+
+            
  
         </div>)}
+
+       
         </div>
 
     )

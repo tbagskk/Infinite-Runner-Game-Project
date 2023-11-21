@@ -11,6 +11,9 @@ module.exports = async (req, res) => {
     console.log("Function invoked");
     console.log(req.body.name);
 
+    const cookies = cookie.parse(req.headers.cookie || '');
+    const existingToken = cookies.token;
+
     // Votre logique ici
     const name = req.body.name;
     let newUser = "";
@@ -24,16 +27,13 @@ module.exports = async (req, res) => {
 
     console.log("existing", existingUser);
     if (existingUser) {
-      // L'utilisateur existe déjà, renvoyer un message approprié
+
+      if (existingToken) {
+        return res.status(200).json({ message: 'User already exists', token: existingToken });
+      }
+
       const token = jwt.sign({ userId: existingUser.id, username: existingUser.name }, secretKey, { expiresIn: '1h' });
-
       res.setHeader('Set-Cookie', `token=${token}; HttpOnly; Secure; SameSite=Strict; Max-Age=3600`);
-      // res.cookie('token', token, {
-      //   httpOnly: true,
-      //   secure: false, // Assurez-vous d'utiliser HTTPS en production
-      //   sameSite: 'Strict', // Ou 'Lax' selon vos besoins
-      // });
-
 
       return res.status(200).json({ message: 'User already exists'});
     }
@@ -50,7 +50,7 @@ module.exports = async (req, res) => {
     }
 
     const token = jwt.sign({ userId: newUser.id, username: newUser.name }, secretKey, { expiresIn: '1h' });
-    
+    res.setHeader('Set-Cookie', `token=${token}; HttpOnly; Secure; SameSite=Strict; Max-Age=3600`);
     // Envoyer la réponse
     res.status(200).json({ message: 'User created successfully', user: newUser, token });
   } catch (error) {
