@@ -50,6 +50,7 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
     let previousTime = startTime2;
     let currentTime = 0;
     let deltaTime2 = 0;
+    let startGame;
 
 
     // les images
@@ -90,8 +91,9 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
         lastFrameTime = 0;
         startTime = 0;
         score = 0;
-        speed = 1;
+        speed = 1.2;
     
+        startGame = performance.now();
         dino = {
           x: 250,
           y: dinoY,
@@ -113,6 +115,7 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
             dino.y < cub.y + cub.yy &&
             dino.y + Red > cub.y
         ) {
+            cancelAnimationFrame(animationId);
             status = true;
             onGameOver(false);
             setScore();  
@@ -180,7 +183,8 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
                 test = 0;
                 
                 
-                score++;
+               score = Math.floor((now - startGame) / 15);
+               
 
                 if (score % 100 === 0)
                     speed += 0.05;
