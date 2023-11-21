@@ -141,7 +141,7 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
         fps++;
         if (now - time_fps >= 1000) {
             time_fps = now;
-           // console.log(fps);
+           console.log("fps",fps);
             fps = 0;
         }
         
