@@ -3,10 +3,8 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 
 import Name from '../Name/Name.jsx';
-import test from './test.js';
-import Game from './Game.js';
+import GamePlay from '../../GamePlay/GamePlay.js';
 import Classement from '../Classement/Classement.jsx';
-import PlayAgain from '../Replay/Replay.jsx';
 import Skin from '../Skin/Skin.jsx';
 
 
@@ -18,20 +16,13 @@ function Dino() {
 
 
     const canvasRef = useRef(null);
-    const [context, setContext] = useState(null);
     const [GameState, setGameState] = useState(false);
     const [open, setOpen] = useState(true);
     const gameRef = useRef(null);
-    const [name, setName] = useState("");
     const [allUser, setAllUser] = useState([]);
     const [skinWindow, setSkinWindow] = useState(false);
 
-
-
-    const [inGame, setInGame] = useState(false); // etat du jeu (en cours ou pas)
-
     const url = "/api/getScore";
-
 
     const getUsers = async () => {
         try {
@@ -42,7 +33,6 @@ function Dino() {
         });
         
         setAllUser(updatedAllUser);
-        setAllUser("caca");
         ;}
         
         catch (error) {
@@ -80,8 +70,7 @@ function Dino() {
         const user = JSON.parse(userJSON);
         const UserName = user.name;
         const skin = user.skin;
-        setName(UserName);
-        gameRef.current = test('test', onGameOver, UserName, getUsers, skin);
+        gameRef.current = GamePlay('test', onGameOver, UserName, getUsers, skin);
     };
     
 
@@ -120,15 +109,17 @@ function Dino() {
 
     }, [])
 
-    const testSpace = (event) => {
-        if (event.code === 'Space'|| event.code === 'ArrowUp')
-            if (gameRef.current)
-                if((GameState === false) && (open === false))
-                    RePlay();
-
-    }
+    
 
     useEffect(() =>{
+        const testSpace = (event) => {
+            if (event.code === 'Space'|| event.code === 'ArrowUp')
+                if (gameRef.current)
+                    if((GameState === false) && (open === false))
+                        RePlay();
+    
+        }
+
         window.addEventListener('keydown', testSpace);
     return () => {
       window.removeEventListener('keydown', testSpace);
