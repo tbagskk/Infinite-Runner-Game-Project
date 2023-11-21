@@ -15,6 +15,7 @@ import Musique from '../Sons/Musique2.mp3';
 
 import ennemy from './Enemy';
 import chooseSkin from './ChooseSkin';
+// import { time } from 'console';
 
 export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin) 
 {
@@ -122,38 +123,71 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
     // fonction pour ajouter le score
     
     const setScore = async () => {
-        await axios.post("/api/addScore", {name: name, score: score, skin: skin});
+        //todo en pushant faut decommenter
+         await axios.post("/api/addScore", {name: name, score: score, skin: skin});
     }
 
     // boucle principale (infinie) du jeu
+    let fps = 0;
+    let test =1;
+    let time_fps = 0;
+    let previous;
+    let delta;
 
-
-    function loop(timestamp) 
+    function loop() 
     { 
+        dino.isCollised = false;
+        var now = performance.now(); // temps actuel (depuis chargement du site)
+        fps++;
+        if (now - time_fps >= 1000) {
+            time_fps = now;
+           // console.log(fps);
+            fps = 0;
+        }
         
         if (status === false)
         {
-            currentTime = timestamp;
-            deltaTime2 = currentTime-previousTime;
-           
             
-            const deltaTime = timestamp - lastTime;
-             
-            animationId = requestAnimationFrame(loop);
-            var now = performance.now();
-            var deltaSeconds = (now - lastFrameTime) / 1000;
+
+//             deltaTime2 = now - previousTime; // duree en millisecondes depuis la derniere frame
+            const deltaTime = now - lastTime; //  delta pour bg
+            
+            animationId = requestAnimationFrame(loop); // mise a jour anim
+            
+            var deltaSeconds = (now - lastFrameTime) / 1000; // duree en seconde depuis la derniere frame
             lastFrameTime = now;
             var elapsedTime = (now - startTime) / 1000;
-            
-          
-            if (deltaTime2 > interval) {
-                previousTime = currentTime-(deltaTime2 % interval);
-                draw(deltaSeconds, elapsedTime);
+            draw(deltaSeconds, elapsedTime);
+            test++;
+
+           
+            if (now - previousTime > interval) {
+                delta = now - previousTime;
+//                 console.log("delta ta lere", delta / interval)
+                cubes.forEach(cub => {
+                    cub.x -= (10 * speed) * delta / interval;
+                  });
+                velocityY += gravity * delta / interval;
+                dino.y = Math.min(dino.y + velocityY * delta / interval, dinoY);
+
+                if (dino.y === dinoY){
+                    dino.jumpCount = 0;
+                    
+//                     velocityY = 0;
+                }
+                
+                previousTime = now;
+                test = 0;
+                
+                
+                score++;
+
+                if (score % 100 === 0)
+                    speed += 0.05;
               }
               if (deltaTime >= enemyInterval) {
                 ennemy(cubes, cube); // Exécutez la fonction enemy
-                lastTime = timestamp; // Mettez à jour le dernier temps
-                
+                lastTime = now; // Mettez à jour le dernier temps
               }
         }
         
@@ -171,19 +205,15 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
         //     setTimeout(loop, 1000 / fps);
         //   }
 
-        
+
     
+
+   
     }
 
     function draw(delta,elapsedTime) 
     {
-
-        
-
         totalSeconds += delta;
-        dino.isCollised = false;
-
-      
         var vx = (300);  // correspond à la vitesse de défilement = 100 pixels/sec
 
         var numImages = Math.ceil(canvas.width / backgroundImage.width) + 1;
@@ -205,34 +235,24 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
         context.restore();
 
         cubes.forEach(cub => {
-            context.fillRect(cub.x  , cub.y , cub.xx ,cub.yy   );
-            // context.drawImage(skin2,cub.x , cub.y, cub.xx,cub.yy  );
-            cub.x -= (10 * speed);
             Collision(dino,cub,50);
+            context.fillRect(cub.x  , cub.y , cub.xx ,cub.yy   );
           });
+
+
 
         // pour éviter que le tableau soit trop grand
 
         if (cubes.length > 10)
             cubes.shift();
 
-        // permet de maintenir une gravité constante
-        velocityY += gravity;
-
-        dino.y = Math.min(dino.y + velocityY, dinoY);
-
-
          // Dessiner le carré rouge
         context.fillStyle = 'red';
         context.drawImage(chooseSkin(skin),dino.x, dino.y, 50, 50);
      
-        if (dino.y === dinoY)
-            dino.jumpCount = 0;
+        
 
-        score++;
-
-        if (score % 100 === 0)
-          speed += 0.05;
+        
         
             context.font = '24px Arial';
             context.fillStyle = 'black';
@@ -243,10 +263,11 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
             context.font = '24px Arial';
             context.fillStyle = 'black';
             context.fillText(name, 900, 50);
-            context.imageSmoothingEnabled = false;
+//             context.imageSmoothingEnabled = false;
     }
 
 
+    
     
 // fonction pour le saut
 
@@ -263,6 +284,12 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
             dino.jumpCount++;
             velocityY = -10;
         }
+//         else if (dino.jumpCount === 2)
+// )
+//         {
+//             dino.jumpCount++;
+//             velocityY = 50;
+//         }
     }
 
 // fonction pour recommencer à jouer
