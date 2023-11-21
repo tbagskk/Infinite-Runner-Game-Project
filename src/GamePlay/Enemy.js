@@ -38,7 +38,7 @@ export default function ennemy(cubes, cube)
         {
             const cub = {
                 x:1200,
-                y:cube.y - 200,
+                y:cube.y - 230,
                 xx: 90,
                 yy:90,
             };

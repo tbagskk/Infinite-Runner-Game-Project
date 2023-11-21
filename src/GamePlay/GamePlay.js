@@ -42,7 +42,7 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
 
     let muse = document.createElement("audio");
     let lastTime = 0;
-    let enemyInterval = 800;
+    let enemyInterval = 750;
 
     let frames_per_sec = 60;
     let interval = Math.floor(1000 / frames_per_sec);
@@ -187,7 +187,11 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
                
 
                 if (score % 100 === 0)
+                {
+                    enemyInterval -= 5;
                     speed += 0.05;
+                }
+                    
               }
               if (deltaTime >= enemyInterval) {
                 ennemy(cubes, cube); // Exécutez la fonction enemy

@@ -9,9 +9,17 @@ module.exports = async (req, res) => {
   try {
 
 
-    res.setHeader('Access-Control-Allow-Origin', 'https://cliks.vercel.app/');
-    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS,POST,GET');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Credentials', true)
+    res.setHeader('Access-Control-Allow-Origin', 'https://cliks.vercel.app')
+    // another common pattern
+    // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+    res.setHeader(
+      'Access-Control-Allow-Headers',
+      'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+    )
+
+
   
   // protection de la route avec JWT
 

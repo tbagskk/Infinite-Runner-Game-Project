@@ -145,8 +145,8 @@ function Dino() {
                 Play
             </button>) }
 
-            {open && <Infos />}
-            
+            {/* {open && <Infos />} */}
+
             {open && <Name close={close} />}
 
             {!GameState && <Classement users={allUser} game={GameState}/>}

@@ -5,7 +5,7 @@ export default function Infos({}){
    
     return (
         <div className='absolute  h-5/6  w-full flex  items-end flex-row justify-start '>
-        <div className=' h-3/6 w-1/6 border border-slate-500 rounded md-text-sm text-base hidden sm:block text-left  text-left m-4 p-4'>
+        <div className=' absolute h-3/6 w-1/6 border border-slate-500 rounded md-text-sm text-base hidden sm:block text-left  text-left m-4 p-4'>
               <p className='mb-2 mt-2 font-bold'>Beta 0.1 <span className='text-green-600'>(current)</span></p>
 
             <div className=''>
