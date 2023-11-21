@@ -49,6 +49,7 @@ export default function Classement({game}){
     },[]);
 
     return (
+        
         <div className='border border-black bg-white h-96 w-52 rounded absolute right-20  text-xl'>
             <p className='mb-2 mt-2 font-bold'>CLASSEMENT</p>
             {allUser.map((user) => (
@@ -59,6 +60,8 @@ export default function Classement({game}){
                 </div>
             ))}
         </div>
+       
+        
 
     )
 }

@@ -115,10 +115,10 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
             dino.y < cub.y + cub.yy &&
             dino.y + Red > cub.y
         ) {
-            cancelAnimationFrame(animationId);
+            
             status = true;
             onGameOver(false);
-            setScore();  
+            setScore(); 
         }
     }
 

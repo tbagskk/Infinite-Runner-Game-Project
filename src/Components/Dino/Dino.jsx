@@ -6,6 +6,7 @@ import Name from '../Name/Name.jsx';
 import GamePlay from '../../GamePlay/GamePlay.js';
 import Classement from '../Classement/Classement.jsx';
 import Skin from '../Skin/Skin.jsx';
+import Infos from '../Infos/Infos.jsx';
 
 
 
@@ -149,6 +150,8 @@ function Dino() {
             {!GameState && <Classement users={allUser} game={GameState}/>}
 
             {skinWindow && <Skin setCookie={setNameCookie} closeSkin={closeSkin}/>}
+
+            {/* {open && <Infos />} */}
             
         </div>
     );
