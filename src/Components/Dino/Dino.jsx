@@ -130,7 +130,7 @@ function Dino() {
 
     return (
    
-    <div className='absolute bg-slate-600 h-72 w-5/6 flex justify-center items-center flex-row '>
+    <div className='absolute  h-full  w-5/6 flex justify-center items-center flex-row '>
             <div className='  h-screen w-full flex justify-center items-center '>
                 <canvas
                         id = "test"
@@ -145,13 +145,15 @@ function Dino() {
                 Play
             </button>) }
 
+            {open && <Infos />}
+            
             {open && <Name close={close} />}
 
             {!GameState && <Classement users={allUser} game={GameState}/>}
 
             {skinWindow && <Skin setCookie={setNameCookie} closeSkin={closeSkin}/>}
 
-            {/* {open && <Infos />} */}
+            
             
         </div>
     );

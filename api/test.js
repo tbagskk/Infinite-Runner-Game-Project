@@ -29,7 +29,7 @@ module.exports = async (req, res) => {
     if (existingUser) {
 
       if (existingToken) {
-        return res.status(200).json({ message: 'User already exists', token: existingToken });
+        return res.status(200).json({ message: 'User already exists'});
       }
 
       const token = jwt.sign({ userId: existingUser.id, username: existingUser.name }, secretKey, { expiresIn: '1h' });
@@ -52,7 +52,7 @@ module.exports = async (req, res) => {
     const token = jwt.sign({ userId: newUser.id, username: newUser.name }, secretKey, { expiresIn: '1h' });
     res.setHeader('Set-Cookie', `token=${token}; HttpOnly; Secure; SameSite=Strict; Max-Age=3600`);
     // Envoyer la réponse
-    res.status(200).json({ message: 'User created successfully', user: newUser, token });
+    res.status(200).json({ message: 'User created successfully', user: newUser});
   } catch (error) {
     console.error('Error creating user:', error);
     res.status(500).json({ error: "Internal Server Error" });
