@@ -8,6 +8,10 @@ import Classement from '../Classement/Classement.jsx';
 import Skin from '../Skin/Skin.jsx';
 import Infos from '../Infos/Infos.jsx';
 
+// test Sockets
+
+import TestSockets from '../TestSockets/TestSockets.js';
+
 
 
 
@@ -152,6 +156,8 @@ function Dino() {
             {!GameState && <Classement users={allUser} game={GameState}/>}
 
             {skinWindow && <Skin setCookie={setNameCookie} closeSkin={closeSkin}/>}
+
+            {/* <TestSockets/> */}
 
             
             

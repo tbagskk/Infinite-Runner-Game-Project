@@ -110,12 +110,14 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
     function Collision(dino, cub, Red) 
     {
         if (
-            dino.x < cub.x + cub.xx &&
+            dino.x < cub.x + cub.xx &&  // dino x = position du joueur x // cub x position du cub x // cub xx sa largeur
             dino.x + Red > cub.x &&
-            dino.y < cub.y + cub.yy &&
+            dino.y < cub.y + cub.yy &&  // dino y = position du joueur y
             dino.y + Red > cub.y
         ) {
             
+            console.log("dino", dino.x, dino.y);
+            console.log("cub", cub.x, cub.y);
             status = true;
             onGameOver(false);
             setScore(); 
@@ -139,7 +141,11 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
 
     function loop() 
     { 
-        dino.isCollised = false;
+        // dino.isCollised = false;
+        cubes.forEach(cub => {
+            cub.x -= (10 * speed) * delta / interval;
+            Collision(dino,cub,50);
+          });
         var now = performance.now(); // temps actuel (depuis chargement du site)
         fps++;
         if (now - time_fps >= 1000) {
@@ -168,7 +174,8 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
                 delta = now - previousTime;
 //                 console.log("delta ta lere", delta / interval)
                 cubes.forEach(cub => {
-                    cub.x -= (10 * speed) * delta / interval;
+                    // cub.x -= (10 * speed) * delta / interval;
+                    Collision(dino,cub,50);
                   });
                 velocityY += gravity * delta / interval;
                 dino.y = Math.min(dino.y + velocityY * delta / interval, dinoY);
@@ -188,7 +195,7 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
 
                 if (score % 100 === 0)
                 {
-                    enemyInterval -= 5;
+                    // enemyInterval -= 5;
                     speed += 0.05;
                 }
                     
@@ -243,7 +250,7 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
         context.restore();
 
         cubes.forEach(cub => {
-            Collision(dino,cub,50);
+            
             context.fillRect(cub.x  , cub.y , cub.xx ,cub.yy   );
           });
 
@@ -251,7 +258,7 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
 
         // pour éviter que le tableau soit trop grand
 
-        if (cubes.length > 10)
+        if (cubes.length > 100)
             cubes.shift();
 
          // Dessiner le carré rouge
@@ -292,6 +299,12 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
             dino.jumpCount++;
             velocityY = -10;
         }
+        // cubes.forEach(cub => {
+        //      cub.x -= 10;
+        //      console.log("cub",cub.x);
+            
+        //   });
+
 //         else if (dino.jumpCount === 2)
 // )
 //         {
