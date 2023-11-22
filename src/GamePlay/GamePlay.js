@@ -142,10 +142,10 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
     function loop() 
     { 
         // dino.isCollised = false;
-        cubes.forEach(cub => {
-            cub.x -= (10 * speed) * delta / interval;
-            Collision(dino,cub,50);
-          });
+        // cubes.forEach(cub => {
+        //     cub.x -= (10 * speed) * delta / interval;
+        //     Collision(dino,cub,50);
+        //   });
         var now = performance.now(); // temps actuel (depuis chargement du site)
         fps++;
         if (now - time_fps >= 1000) {
@@ -174,7 +174,7 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
                 delta = now - previousTime;
 //                 console.log("delta ta lere", delta / interval)
                 cubes.forEach(cub => {
-                    // cub.x -= (10 * speed) * delta / interval;
+                     cub.x -= (10 * speed) * delta / interval;
                     Collision(dino,cub,50);
                   });
                 velocityY += gravity * delta / interval;
@@ -196,7 +196,7 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
                 if (score % 100 === 0)
                 {
                     // enemyInterval -= 5;
-                    // speed += 0.05;
+                     speed += 0.05;
                 }
                     
               }
