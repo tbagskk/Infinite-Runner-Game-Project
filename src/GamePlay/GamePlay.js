@@ -91,7 +91,7 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
         lastFrameTime = 0;
         startTime = 0;
         score = 0;
-        speed = 1.2;
+        speed = 1;
     
         startGame = performance.now();
         dino = {
@@ -196,7 +196,7 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
                 if (score % 100 === 0)
                 {
                     // enemyInterval -= 5;
-                    speed += 0.05;
+                    // speed += 0.05;
                 }
                     
               }
