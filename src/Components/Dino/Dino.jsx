@@ -10,7 +10,7 @@ import Infos from '../Infos/Infos.jsx';
 
 // test Sockets
 
-import TestSockets from '../TestSockets/TestSockets.js';
+import TestSockets from '../RealGame/RealGame.jsx';
 
 
 
@@ -27,23 +27,25 @@ function Dino() {
     const [allUser, setAllUser] = useState([]);
     const [skinWindow, setSkinWindow] = useState(false);
 
-    const url = "/api/getScore";
+    const url = "http://172.30.135.239:8080/scores";
 
-    const getUsers = async () => {
-        try {
-        const response = await axios.post(url);
-       
-        let updatedAllUser = response.data.user.map((user) => {
-            return user;
-        });
+    // const getUsers = async () => {
+    //     try {
+    //     const response = await axios.get(url);
+    //     console.log(response.data);
+    //     // let updatedAllUser = response.data.user.map((user) => {
         
-        setAllUser(updatedAllUser);
-        ;}
+    //     //     return user;
+    //     // });
         
-        catch (error) {
-            console.error("Erreur lors de la récup des users");
-        }
-    }
+    //     // setAllUser(updatedAllUser);
+    //     ;}
+        
+    //     catch (error) {
+    //         console.error("Erreur lors de la récup des users");
+    //         throw error;
+    //     }
+    // }
 
 
 
@@ -75,13 +77,13 @@ function Dino() {
         const user = JSON.parse(userJSON);
         const UserName = user.name;
         const skin = user.skin;
-        gameRef.current = GamePlay('test', onGameOver, UserName, getUsers, skin);
+        // gameRef.current = GamePlay('test', onGameOver, UserName, getUsers, skin);
     };
     
 
     useEffect(() => {
 
-        getUsers();
+        // getUsers();
         const handleKeyDown = (event) => {
             if (gameRef.current) {
                 if (event.code === 'Space' || event.code === 'ArrowUp') {
@@ -135,7 +137,7 @@ function Dino() {
     return (
    
     <div className='absolute  h-full  w-5/6 flex justify-center items-center flex-row '>
-            <div className='  h-screen w-full flex justify-center items-center '>
+            {/* <div className='  h-screen w-full flex justify-center items-center '>
                 <canvas
                         id = "test"
                         ref={canvasRef}
@@ -144,20 +146,20 @@ function Dino() {
                         style = {{width: '100%', height: '100', overflow: 'hidden', position: 'relative' }} 
                         className="border bg-white rounded black"
                 />
-            </div>
-            {!GameState && (<button onClick={RePlay} className='rounded border border-black absolute flex justify-center items-center h-12 w-28'>
+            </div> */}
+            {/* {!GameState && (<button onClick={RePlay} className='rounded border border-black absolute flex justify-center items-center h-12 w-28'>
                 Play
-            </button>) }
+            </button>) } */}
 
             {/* {open && <Infos />} */}
 
-            {open && <Name close={close} />}
+            {/* {open && <Name close={close} />}
 
             {!GameState && <Classement users={allUser} game={GameState}/>}
 
-            {skinWindow && <Skin setCookie={setNameCookie} closeSkin={closeSkin}/>}
+            {skinWindow && <Skin setCookie={setNameCookie} closeSkin={closeSkin}/>} */}
 
-            {/* <TestSockets/> */}
+            <TestSockets/>
 
             
             

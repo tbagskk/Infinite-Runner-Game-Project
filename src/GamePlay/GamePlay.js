@@ -141,11 +141,7 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
 
     function loop() 
     { 
-        // dino.isCollised = false;
-        // cubes.forEach(cub => {
-        //     cub.x -= (10 * speed) * delta / interval;
-        //     Collision(dino,cub,50);
-        //   });
+        dino.isCollised = false;
         var now = performance.now(); // temps actuel (depuis chargement du site)
         fps++;
         if (now - time_fps >= 1000) {
@@ -339,3 +335,44 @@ export default function GamePlay(canvasId, onGameOver, name, ChangeScore, skin)
         rePlay: rePlay,
     };
 }
+
+
+// room.onMessage("Usery",(message) => {  
+//     Property.velocityY = message.content;
+//    //console.log(User.y); 
+// });
+
+// room.onMessage("Enemy",(message) => {  
+//     Cube.forEach(cub => {
+//         cub.x = message.content;
+//      });
+//  });
+ 
+// room.onMessage("message",(message) => {
+//     console.log('Message du serveur :', message);
+
+// });
+
+// room.onMessage("Go",(message) => {
+//     console.log("GO");
+//     go = true;
+
+// });
+// let startTime;
+
+// room.onMessage("StartTime", (message) => {
+    
+//     startTime = message.content;
+//     //console.log(startTime);
+// });
+
+// room.onMessage("A",(message) => {
+//     const currentTime = Date.now();
+//     const deltaTime = (currentTime - startTime);  // Convertir en secondes
+
+//     // Utilisez deltaTime pour ajuster l'incrément de la variable A
+//     a = a + (1 );
+//     console.log('A du client:', a);
+//     console.log('A du serveur', message.content);
+
+// });

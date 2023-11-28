@@ -1,0 +1,66 @@
+#imgPlayer{
+    height: 90%;
+}
+
+#containerImgPlayer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    height: 90%;
+    min-width: 250px;
+}
+
+
+#PopupPlayer{
+    position: absolute;
+    height: 75%;
+    width: 40%;
+    z-index: 2;
+
+}
+
+#PopupPicturePlayer{
+    height: 70%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonSkin{
+
+    height: 50px;
+    width: 35px;
+    margin: 5%;
+    cursor: pointer;
+}
+
+.buttonSkin:active{
+    transform: scale(1.2);
+}
+
+#PopupButtonPlayer{
+    height: 30%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction: column;
+    color: #545454;
+
+}
+
+#ScorePopup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    width: 30%;
+    height: 40%;
+    font-weight: 700;
+}
+
+#scoreReplay{
+    margin-bottom: -3%;
+}

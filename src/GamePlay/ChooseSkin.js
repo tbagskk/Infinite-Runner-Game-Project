@@ -1,6 +1,6 @@
-import FrImg from './../Images/francepng.png';
-import Img3 from './../Images/chat2.png';
-import Img4 from './../Images/red.png';
+import FrImg from './../Images/Perso1.png';
+import Img3 from './../Images/Perso1.png';
+import Img4 from './../Images/Perso1.png';
 
 const skinFrance = new Image();
 const skin2 = new Image();

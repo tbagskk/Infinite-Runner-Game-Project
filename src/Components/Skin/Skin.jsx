@@ -2,9 +2,9 @@ import React, { useRef, useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-import Img1 from '../../Images/francepng.png';
-import Img2 from '../../Images/chat2.png';
-import Img3 from '../../Images/red.png';
+import Img1 from '../../Images/Perso1.png';
+import Img2 from '../../Images/Perso1.png';
+import Img3 from '../../Images/Perso1.png';
 
 
 export default function Skin({setCookie, closeSkin}){
