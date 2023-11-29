@@ -65,7 +65,14 @@ export default function AccueilAnim(canvasId){
         animationId = requestAnimationFrame(loop);
         const delta = (currentTime - lastTime) / 20 ; // le delta
         lastTime = currentTime;
+
         console.log("le detla", delta);
+        console.log("cubY", cub.y);
+        console.log("velocity", Property.velocity);
+        console.log("jump", jump);
+        console.log("cub.x", cub.x);
+        console.log("gravity", Property.gravity);
+        
         cub.x += 1 * delta;
 
         cub.y = Math.min(cub.y + Property.velocity * delta , 400);
