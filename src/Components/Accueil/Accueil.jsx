@@ -75,7 +75,7 @@ export default function Accueil({setAccueil, putName}){
                     value={name}
                     onChange={nameChange}
                 />
-                <button onClick={clickPlay} id="ButtonPopup"  className='rounded-lg text-3xl'> PLAY </button>
+                <button  id="ButtonPopup"  className='rounded-lg text-3xl'> PLAY </button>
                 </div>
 
             </div>}
