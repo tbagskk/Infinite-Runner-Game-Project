@@ -58,33 +58,37 @@ export default function AccueilAnim(canvasId){
 
     let lastTime = 0;
     let jump = 0;
+    let lastTimeJump = 0;
 
     function loop(currentTime){
+
+        let now = performance.now();
+        console.log(now);
 
         if (launch){
         animationId = requestAnimationFrame(loop);
         const delta = (currentTime - lastTime) / 20 ; // le delta
         lastTime = currentTime;
 
-        console.log("le detla", delta);
-        console.log("cubY", cub.y);
-        console.log("velocity", Property.velocity);
-        console.log("jump", jump);
-        console.log("cub.x", cub.x);
-        console.log("gravity", Property.gravity);
-        
+        // console.log("le detla", delta);
+        // console.log("cubY", cub.y);
+        // console.log("velocity", Property.velocity);
+        // console.log("jump", jump);
+        // console.log("cub.x", cub.x);
+        // console.log("gravity", Property.gravity);
+
         cub.x += 1 * delta;
 
         cub.y = Math.min(cub.y + Property.velocity * delta , 400);
         Property.velocity += Property.gravity * delta ;
 
-        if (jump > 80){
-            // JumpSong.play();
+        if (now - lastTimeJump > 2000){
+            lastTimeJump = now;
             Property.velocity = -15;
             jump = 0
 
         }
-        jump += 1 * delta ;
+        // jump += 1 * delta ;
             
         
         if (cub.x > 1000)
