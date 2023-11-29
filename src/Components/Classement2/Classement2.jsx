@@ -13,7 +13,7 @@ export default function Classement2({RePLay}){
 
     const [users, setUser] = useState([]);
 
-    const url = "https://sea-lion-app-yadoj.ondigitalocean.app"
+    const url = "https://sea-lion-app-yadoj.ondigitalocean.app/scores"
 
     // const chooseSkin = (value) => {
         
