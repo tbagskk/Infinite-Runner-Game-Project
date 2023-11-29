@@ -16,12 +16,12 @@ export default function Accueil({setAccueil, putName}){
     
 
     const clickPlay = () => {
-        if (name){
-            setActive(false);
-            setAccueil(name);
-            GameAccueil.stop();
+        // if (name){
+        //     setActive(false);
+        //     setAccueil(name);
+        //     GameAccueil.stop();
             
-        }
+        // }
             
         
     };
@@ -75,7 +75,7 @@ export default function Accueil({setAccueil, putName}){
                     value={name}
                     onChange={nameChange}
                 />
-                <button  id="ButtonPopup"  className='rounded-lg text-3xl'> PLAY </button>
+                <button onClick={clickPlay} id="ButtonPopup"  className='rounded-lg text-3xl'> PLAY </button>
                 </div>
 
             </div>}
