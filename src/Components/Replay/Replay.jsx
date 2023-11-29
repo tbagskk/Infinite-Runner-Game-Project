@@ -4,7 +4,7 @@ import './Replay.css';
 import Droite from '../../Images/droite2.png';
 import Gauche from '../../Images/gauche.png';
 import Img1 from '../../Images/Perso1.png';
-import Img2 from '../../Images/chat3.png';
+import Img2 from '../../Images/turtle1.png';
 import Img3 from '../../Images/capybara.png';
 
 

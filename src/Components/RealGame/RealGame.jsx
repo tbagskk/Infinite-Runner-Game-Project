@@ -11,7 +11,7 @@ import Classement2 from '../Classement2/Classement2.jsx';
 
 export default function TestSockets() {
 
-    const url = "http://localhost:3001";
+    const url = "https://sea-lion-app-yadoj.ondigitalocean.app";
     const [test, setTest] = useState(false);
     
     const canvasRef = useRef(null);
@@ -51,7 +51,7 @@ export default function TestSockets() {
         newSocket.emit("name", name);
         GameRef.current = Jeu('CanvaGame', newSocket);
         
-        // GameRef.current.rePlay();
+         GameRef.current.rePlay(1);
         
         setConnect(true);
     };

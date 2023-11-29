@@ -1,5 +1,5 @@
 import Img1 from './../Images/Perso1.png';
-import Img2 from './../Images/chat3.png';
+import Img2 from './../Images/turtle1.png';
 import Img3 from './../Images/capybara.png';
 
 const skin1 = new Image();
@@ -27,4 +27,13 @@ export function chooseSkinReact(skin){
             return (Img2);
         else if (skin === 3)
             return (Img3);
+}
+
+export function chooseSkinReactStr(skin){
+    if (skin === "default_skin")
+        return (Img1);
+    else if (skin === "2")
+        return (Img2);
+    else if (skin === "3")
+        return (Img3);
 }

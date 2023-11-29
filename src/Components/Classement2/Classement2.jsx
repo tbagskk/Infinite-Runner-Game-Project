@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import './Classement.css';
+import {chooseSkinReactStr} from '../ChooseSkin';
 import Droite from '../../Images/droite2.png';
 import Gauche from '../../Images/gauche.png';
 import Img1 from '../../Images/Perso1.png';
@@ -12,17 +13,17 @@ export default function Classement2({RePLay}){
 
     const [users, setUser] = useState([]);
 
-    const url = "http://localhost:3001/scores"
+    const url = "https://sea-lion-app-yadoj.ondigitalocean.app"
 
-    const chooseSkin = (value) => {
+    // const chooseSkin = (value) => {
         
-        if (value === 'default_skin')
-            return (Img1);
-        else if (value === '2') 
-            return (Img2);
-        else if (value === '3')
-            return (Img3);
-    };
+    //     if (value === 'default_skin')
+    //         return (Img1);
+    //     else if (value === '2') 
+    //         return (Img2);
+    //     else if (value === '3')
+    //         return (Img3);
+    // };
 
 
     const getUsers = async () => {
@@ -60,7 +61,7 @@ export default function Classement2({RePLay}){
                     </div>
                     <div id="ContenuPlayerChild">
                     <div id="ImgPlayerChild">
-                        <img src={chooseSkin(user.skin)} alt={`Joueur ${index + 1}`} />
+                        <img src={chooseSkinReactStr(user.skin)} alt={`Joueur ${index + 1}`} />
                     </div>
                     <div id="NamePlayerChild">
                         <p className="text-l">{user.name.slice(0,7)}</p>

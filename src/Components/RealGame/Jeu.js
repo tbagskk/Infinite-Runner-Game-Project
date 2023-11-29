@@ -176,11 +176,7 @@ export default function GamePlay(canvasId, socket)
             
             cub.x -= (10 * Property.speed) * delta;
             if (collision(User, cub)){
-                ChockSong.currentTime = 0;
-                ChockSong.play();
-                muse.pause();
-                socket.emit("528=", "19"); // lost
-                cancelAnimationFrame(animationId);
+                lost();
             }
           });
 
@@ -229,6 +225,14 @@ export default function GamePlay(canvasId, socket)
         animationId = requestAnimationFrame(loop);
     };
 
+    function lost(){
+        ChockSong.currentTime = 0;
+        ChockSong.play();
+        muse.pause();
+        socket.emit("528=", "19"); // lost
+        cancelAnimationFrame(animationId);
+    };
+
 
 
     function handleKeyDown(event) {
@@ -240,6 +244,16 @@ export default function GamePlay(canvasId, socket)
     }
     
     document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    function handleVisibilityChange() {
+        if (document.hidden) {
+          
+          lost();
+        } else {
+          // La page est visible (l'utilisateur est revenu à la fenêtre ou à l'onglet)
+          console.log("Page visible");
+        }
+      }
 
     function removeEventListeners() {
         document.removeEventListener('keydown', handleKeyDown);
