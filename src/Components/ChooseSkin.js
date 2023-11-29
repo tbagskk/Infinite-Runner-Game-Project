@@ -1,6 +1,6 @@
-import Img1 from './../Images/Perso1.png';
+import Img1 from './../Images/pixel3.png';
 import Img2 from './../Images/turtle1.png';
-import Img3 from './../Images/capybara.png';
+import Img3 from './../Images/pixel2.png';
 
 const skin1 = new Image();
 const skin2 = new Image();

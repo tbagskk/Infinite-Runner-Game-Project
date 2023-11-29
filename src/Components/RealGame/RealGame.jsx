@@ -11,7 +11,8 @@ import Classement2 from '../Classement2/Classement2.jsx';
 
 export default function TestSockets() {
 
-    const url = "https://sea-lion-app-yadoj.ondigitalocean.app";
+    // const url = "https://sea-lion-app-yadoj.ondigitalocean.app";
+    const url = "http://10.18.207.221:3001";
     const [test, setTest] = useState(false);
     
     const canvasRef = useRef(null);
