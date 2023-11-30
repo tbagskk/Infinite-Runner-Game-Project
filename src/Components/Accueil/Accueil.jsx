@@ -16,12 +16,12 @@ export default function Accueil({setAccueil, putName}){
     
 
     const clickPlay = () => {
-        if (name){
-            setActive(false);
-            setAccueil(name);
-            GameAccueil.stop();
+        // if (name){
+        //     setActive(false);
+        //     setAccueil(name);
+        //     GameAccueil.stop();
             
-        }
+        // }
             
         
     };
