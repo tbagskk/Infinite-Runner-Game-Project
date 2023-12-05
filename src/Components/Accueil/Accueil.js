@@ -2,7 +2,7 @@ import Musique from '../../Sons/musiqueNoel.mp3';
 import jumpSong from '../../Sons/jump2.mp3'
 
 import Img1 from '../../Images/sapin.png';
-import Img2 from '../../Images/Perso1.png';
+import Img2 from '../../Images/pixel3.png';
 import Img3 from '../../Images/flocon.png';
 
 const image = new Image();
@@ -57,13 +57,12 @@ export default function AccueilAnim(canvasId){
     }
 
     let lastTime = 0;
-    let jump = 0;
     let lastTimeJump = 0;
 
     function loop(currentTime){
 
         let now = performance.now();
-        console.log(now);
+        // console.log(now);
 
         if (launch){
         animationId = requestAnimationFrame(loop);
@@ -85,7 +84,7 @@ export default function AccueilAnim(canvasId){
         if (now - lastTimeJump > 2000){
             lastTimeJump = now;
             Property.velocity = -15;
-            jump = 0
+
 
         }
         // jump += 1 * delta ;

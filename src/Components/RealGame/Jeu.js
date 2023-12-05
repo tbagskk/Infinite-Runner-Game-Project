@@ -4,8 +4,8 @@ import gift1 from '../../Images/gift.png';
 import Bg1 from '../../Images/bgSapin8.png';
 import jumpSong from '../../Sons/jump2.mp3'
 import chockSong from '../../Sons/chock.mp3'
-import Musique from '../../Sons/Musique2.mp3';
-import { Time } from 'phaser';
+import Musique from '../../Sons/musiqueNoel.mp3';
+
 
 
 let JumpSong = document.createElement("audio");
@@ -18,10 +18,9 @@ muse.volume = 0.005;
 JumpSong.volume = 0.1;
 ChockSong.volume = 0.1;
       
-let Cube = [];
+
 let CubeClient = [];
 let animationId;
-let startGame;
 let totalSeconds = 0;
 let lastFrameTime = 0;
 
@@ -35,7 +34,6 @@ let Property = {
 
 
 function initAll(skin){
-    startGame = performance.now();
     Property = {
         velocityY : 0,
         gravity : 1,
@@ -136,7 +134,6 @@ export default function GamePlay(canvasId, socket)
     });
   
     let lastTime = 0;
-    let count = 0;
     let TimeEnemy = 0;
 
     function loop(currentTime)
@@ -165,7 +162,7 @@ export default function GamePlay(canvasId, socket)
         context.fillStyle = 'black';
         context.imageSmoothingQuality = 'high';
         context.fillText(User.score, 30, 50);
-        count = Math.floor((now - startGame) / 15);
+        
 
 
         if (User.y === Property.userGround)

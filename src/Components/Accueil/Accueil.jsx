@@ -1,9 +1,7 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useCallback, useRef, useEffect, useState } from 'react';
 import './Accueil.css';
-import axios from 'axios';
-import Cookies from 'js-cookie';
 import AccueilAnim from './Accueil.js';
-import Img1 from '../../Images/Perso1.png';
+import Img1 from '../../Images/pixel3.png';
 
 
 export default function Accueil({setAccueil, putName}){
@@ -15,16 +13,13 @@ export default function Accueil({setAccueil, putName}){
     
     
 
-    const clickPlay = () => {
-        // if (name){
-        //     setActive(false);
-        //     setAccueil(name);
-        //     GameAccueil.stop();
-            
-        // }
-            
-        
-    };
+    const clickPlay = useCallback(() => {
+        if (name){
+            setActive(false);
+            setAccueil(name);
+            GameAccueil.stop();
+        }
+    }, [name, setActive, setAccueil, GameAccueil]);
 
     const nameChange = (event) => {
         const inputValue = event.target.value;
@@ -33,17 +28,7 @@ export default function Accueil({setAccueil, putName}){
         setName(event.target.value);
     };
 
-    const handleKeyDown = (event) => {
-
-        if (event.code === 'Enter' || event.code === 'Space')
-        {
-            if (name)
-                clickPlay();
-                
-            
-        }
-    };
-
+    
   
     useEffect(() => {
     const Game = AccueilAnim("CanvaAccueil");
@@ -52,19 +37,31 @@ export default function Accueil({setAccueil, putName}){
       }, []);
 
     useEffect(() => {
+
+        const handleKeyDown = (event) => {
+
+            if (event.code === 'Enter' || event.code === 'Space')
+            {
+                if (name)
+                    clickPlay();
+                    
+                
+            }
+        };
+    
         window.addEventListener('keydown', handleKeyDown);
 
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
-    },[name])
+    },[name, clickPlay])
 
     return (
         
         <div id="ContainerAccueil">
              {active && <div id="PopupName">
                 <div id="PopupPicture">
-                    <img id="imgPopup" src={Img1}></img>
+                    <img alt="popup" id="imgPopup" src={Img1}></img>
                 </div>
                 <div id="PopupInput">
                 <input 
