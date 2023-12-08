@@ -34,10 +34,10 @@ Connexion avec Prisma pour une gestion simplifiée des requêtes et des migratio
 
 
 
-![al-text](1.PNG)
+![al-text](pictures/1.PNG)
 
-![al-text](2.PNG)
+![al-text](pictures/2.PNG)
 
-![al-text](3.PNG)
+![al-text](pictures/3.PNG)
 
-![al-text](4.PNG)
+![al-text](pictures/4.PNG)
