@@ -1,36 +1,36 @@
-# Projet de Jeu de Type Runner Infini
+# Infinite Runner Game Project
 
-Ce dépôt GitHub contient le code source et la documentation pour le développement d'un jeu de type runner infini, comprenant un système de score multijoueur et un système de personnalisation de skins. Le projet a été conçu en utilisant les technologies suivantes : React-JS, Node-JS, sockets avec extrapolation côté client, tokens JWT pour la sécurisation, HTML5 Canvas pour la plateforme de jeu et l'animation, Tailwind CSS combiné avec du CSS vanilla pour le style, et enfin, une base de données PostgreSQL hébergée sur Neon et connectée via Prisma.
+This GitHub repository contains the source code and documentation for the development of an infinite runner game, featuring a multiplayer scoring system and a skin customization system. The project was built using the following technologies: React-JS, Node-JS, sockets with client-side extrapolation, JWT tokens for security, HTML5 Canvas for the game platform and animation, Tailwind CSS combined with vanilla CSS for styling, and lastly, a PostgreSQL database hosted on Neon and connected via Prisma.
 
 
-## Fonctionnalités
+## Features
 
 ### Front-end
 
-Interface utilisateur interactive avec React-JS.
-Personnalisation des skins pour une expérience utilisateur unique.
-Animation fluide et réactive grâce à HTML5 Canvas.
+Interactive user interface with React-JS.
+Skin customization for a unique user experience.
+Smooth and responsive animation using HTML5 Canvas.
 
 ### Back-end
 
-Système de score multijoueur.
-Logique de jeu côté serveur intégrant des sockets avec extrapolation côté client.
-Sécurisation via l'implémentation de tokens JWT.
+Multiplayer scoring system.
+Server-side game logic integrating sockets with client-side extrapolation.
+Security ensured through JWT token implementation.
 
 ### Style
 
-Utilisation de Tailwind CSS pour une stylisation rapide et efficace.
-Compléments de style avec du CSS vanilla pour une personnalisation approfondie.
+Utilization of Tailwind CSS for quick and efficient styling.
+Supplementary styling with vanilla CSS for in-depth customization.
 
-### Déploiement
+### Deployment
 
-Déploiement du serveur Node.js sur Digital Ocean pour des performances optimales.
-Hébergement du front-end sur Vercel pour une disponibilité maximale.
+Deployment of the Node.js server on Digital Ocean for optimal performance.
+Front-end hosted on Vercel for maximum availability.
 
-### Base de Données
+### Database
 
-Configuration de la base de données PostgreSQL sur Neon.
-Connexion avec Prisma pour une gestion simplifiée des requêtes et des migrations.
+Configuration of PostgreSQL database on Neon.
+Connection with Prisma for simplified query and migration management.
 
 
 
