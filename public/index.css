@@ -15,13 +15,20 @@ html, body, #root {
   height: 100%;
   margin: 0;
   padding: 0;
+
 }
 
 #root {
   display: flex;
   flex-direction: column;
+
 }
 
 .App {
   flex: 1;
+}
+
+#appp{
+
+  height: 100%;
 }
