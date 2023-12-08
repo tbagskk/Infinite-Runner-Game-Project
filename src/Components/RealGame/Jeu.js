@@ -204,13 +204,13 @@ export default function GamePlay(canvasId, socket)
         {
             User.jumpCount++;
             Property.velocityY = -18;
-            JumpSong.play();
+            // JumpSong.play();
         } 
         else if (User.jumpCount === 1)
         {
             User.jumpCount++;
             Property.velocityY = -12;
-            JumpSong.play();
+            // JumpSong.play();
         }
     }
     
@@ -223,9 +223,9 @@ export default function GamePlay(canvasId, socket)
     };
 
     function lost(){
-        ChockSong.currentTime = 0;
-        ChockSong.play();
-        muse.pause();
+        // ChockSong.currentTime = 0;
+        // ChockSong.play();
+         muse.pause();
         socket.emit("528=", "19"); // lost
         cancelAnimationFrame(animationId);
     };
