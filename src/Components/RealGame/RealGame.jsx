@@ -10,8 +10,8 @@ import Classement2 from '../Classement/Classement.jsx';
 
 export default function TestSockets() {
 
-    // const url = "https://sea-lion-app-yadoj.ondigitalocean.app";
-    const url = "http://localhost:3001";
+    const url = "https://sea-lion-app-yadoj.ondigitalocean.app";
+    // const url = "http://localhost:3001";
 
     
     const canvasRef = useRef(null);

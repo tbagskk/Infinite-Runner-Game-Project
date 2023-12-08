@@ -8,8 +8,8 @@ export default function Classement2(){
 
     const [users, setUser] = useState([]);
 
-    // const url = "https://sea-lion-app-yadoj.ondigitalocean.app/scores";
-    const url = "http://localhost:3001/scores" ;
+    const url = "https://sea-lion-app-yadoj.ondigitalocean.app/scores";
+    // const url = "http://localhost:3001/scores" ;
 
 
 
