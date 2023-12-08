@@ -32,3 +32,12 @@ Hébergement du front-end sur Vercel pour une disponibilité maximale.
 Configuration de la base de données PostgreSQL sur Neon.
 Connexion avec Prisma pour une gestion simplifiée des requêtes et des migrations.
 
+
+
+![al-text](1.PNG)
+
+![al-text](2.PNG)
+
+![al-text](3.PNG)
+
+![al-text](4.PNG)
