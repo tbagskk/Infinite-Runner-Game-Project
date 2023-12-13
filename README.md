@@ -32,7 +32,7 @@ Front-end hosted on Vercel for maximum availability.
 Configuration of PostgreSQL database on Neon.
 Connection with Prisma for simplified query and migration management.
 
-
+(development is still in progress, many bugs still exist and responsive is not yet complete)
 
 ![al-text](pictures/1.PNG)
 
