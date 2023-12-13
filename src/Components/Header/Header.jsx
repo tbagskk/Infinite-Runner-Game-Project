@@ -15,7 +15,9 @@ export default function Header(){
         if (location.pathname === "/infos"){
             setNamePath("Return to game")
         } else if (location.pathname === "/"){
-            setNamePath("Submit Suggestion");
+            setNamePath("Contact");
+        } else {
+            setNamePath("Return to game");
         }
 
     };
@@ -25,6 +27,8 @@ export default function Header(){
             setPath("/")
         } else if (location.pathname === "/"){
             setPath("/infos");
+        } else {
+            setPath("/");
         }
         console.log(location.pathname);
     };
@@ -38,12 +42,13 @@ export default function Header(){
     return(
         <div className="containerHeader">
             <div className="logoHeader">
+            <Link className="linkLogo" to="/" >
                 <img className="imgLogo" src={logo}/>
+            </Link>
             </div>
             <div className="menuHeader">
-                
-              
                 <Link  className="buttonHeader" to={path} >{namePath}</Link>
+                <Link  className="buttonHeader" to="/about" >About us</Link>
             </div>
         </div>
     )

@@ -8,6 +8,8 @@ export default function Formulaire(){
     const [name, setName] = useState('');
     const [msg, setMsg] = useState('');
     const [isValid, setIsValid] = useState(false);
+    const [noUser, setNoUser] = useState(false);
+    const [msgSend, setMsgSend] = useState(false);
 
     const handleNameChange = (e) => {
         const newName = e.target.value;
@@ -33,15 +35,26 @@ export default function Formulaire(){
     }
 
     const handleSubmit = async () => {
+        setNoUser(false);
+        setMsgSend(false);
         setMsg("");
-            setName("");
+        setName("");
 
         if (name)
         try {
-            await axios.post(config.apiUrl + config.endpointInfos, {
+            const push = await axios.post(config.apiUrl + config.endpointInfos, {
                 name: name,
                 msg: msg,
             });
+            console.log(push.data.message);
+            if (push.data.message === 'User non trouvé'){
+                setNoUser(true);
+                setMsgSend(false);
+            } else{
+                setNoUser(false);
+                setMsgSend(true);
+
+            }
             
         } catch(error) {
             console.error('Error lors de la requête POST:', error);
@@ -79,6 +92,10 @@ Give me suggestions for game improvements or things you would like to see.</p></
                     <button className='buttonForm' onClick={handleSubmit} disabled={!isValid}>
                         Send
                     </button>
+                    <div className='errorDiv'>
+                    {noUser && <p className='errorForm'>Make sure your username matches the one you use for gaming.</p>}
+                    {msgSend && <p className='sendForm'>Message sent successfully.</p>}
+                    </div>
 
                 </div>
             </div>

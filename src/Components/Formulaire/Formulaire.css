@@ -8,7 +8,7 @@
 }
 
 .form{
-    height: 500px;
+    height: 620px;
     width: 500px;
     border-radius: 10px;
     display: flex;
@@ -19,15 +19,15 @@
 }
 
 .formTop{
-    height: 15%;
+    height: 10%;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 30px;
-    font-weight: 500;
+    font-size: 40px;
+    font-weight: 800;
     color:#949494;
-    margin-top: 20px;
+    margin-top: 35px;
 }
 
 
@@ -71,6 +71,10 @@
     transform: scale(1.05, 1.05);
 }
 
+.buttonForm:hover{
+    background-color: #FF8787;
+}
+
 .pForm{
     width: 80%;
     color:#949494;
@@ -78,7 +82,7 @@
 }
 
 .formPTitle{
-    border: 1px solid  #949494;
+    
     width: 80%;
     text-align: center;
     height: 80%;
@@ -86,4 +90,24 @@
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+}
+
+.errorForm{
+    color: red;
+    width: 100%;
+    
+}
+
+.errorDiv{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    height: 40px;
+}
+
+.sendForm{
+    color: green;
+    width: 100%;
 }
