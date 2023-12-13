@@ -1,0 +1,44 @@
+.containerHeader{
+    background-color: #eb7371;
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 30px;
+
+}
+
+.logoHeader{
+    height: 70%;
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menuHeader{
+   
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 60px;
+    width: 20%;
+}
+
+.buttonHeader{
+    background-color: white;
+    border-radius: 10px;
+    height: 40px;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.imgLogo{
+    height: 10px;
+    height: 70%;
+}

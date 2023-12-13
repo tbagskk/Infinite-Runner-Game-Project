@@ -34,6 +34,9 @@ export default function Accueil({setAccueil, putName}){
     const Game = AccueilAnim("CanvaAccueil");
     setGameAccueil(Game);
     Game.rePlay(); 
+    return () => {
+        Game.stop(); // Ajoutez une fonction stop ou cleanup à votre animation
+    };
       }, []);
 
     useEffect(() => {

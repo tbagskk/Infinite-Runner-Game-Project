@@ -257,9 +257,18 @@ export default function GamePlay(canvasId, socket)
         
     }
 
+    function stop() {
+        cancelAnimationFrame(animationId);
+        muse.pause();
+        removeEventListeners();
+    };
+
     return {
         start: function() {
 
+        },
+        stop: function(){
+            stop();
         },
         jump: function() {
 

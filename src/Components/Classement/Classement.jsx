@@ -2,20 +2,17 @@ import React, { useEffect, useState } from 'react';
 import './Classement.css';
 import {chooseSkinReactStr} from '../ChooseSkin';
 import axios from 'axios';
+import config from '../Config';
 
 
 export default function Classement2(){
 
     const [users, setUser] = useState([]);
 
-    const url = "https://sea-lion-app-yadoj.ondigitalocean.app/scores";
-    // const url = "http://localhost:3001/scores" ;
-
-
 
     const getUsers = async () => {
             try {
-            const response = await axios.get(url);
+            const response = await axios.get(config.apiUrl + config.endpointScore);
             const sortedUsers = response.data.sort((a, b) => b.score - a.score);
 
             // Limiter à 10 utilisateurs

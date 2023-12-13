@@ -5,13 +5,11 @@ import Jeu from './Jeu.js';
 import Accueil from '../Accueil/Accueil.jsx';
 import RePlay from '../Replay/Replay.jsx';
 import Classement2 from '../Classement/Classement.jsx';
+import config from '../Config.js';
 
 
 
 export default function TestSockets() {
-
-    const url = "https://sea-lion-app-yadoj.ondigitalocean.app";
-    // const url = "http://localhost:3001";
 
     
     const canvasRef = useRef(null);
@@ -41,7 +39,7 @@ export default function TestSockets() {
 
 
     const connectToServer = (name) => {  // connexion au serveur qui englobe tout
-        const newSocket = io(url, {
+        const newSocket = io(config.apiUrl, {
             path: '/socket.io',
         });
         setSocket(newSocket); // enregistrement de la state socket
@@ -129,6 +127,14 @@ export default function TestSockets() {
             canvasRef.current.style.opacity = '1';
         }
     },[replay])
+
+    useEffect(() => {
+        return () => {
+            if (GameRef.current)
+                GameRef.current.stop();
+        };
+       
+    },[])
 
    
     return (
