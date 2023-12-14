@@ -46,7 +46,7 @@ export default function Formulaire(){
                 name: name,
                 msg: msg,
             });
-            console.log(push.data.message);
+
             if (push.data.message === 'User non trouvé'){
                 setNoUser(true);
                 setMsgSend(false);

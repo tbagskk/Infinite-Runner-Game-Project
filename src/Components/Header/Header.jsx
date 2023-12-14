@@ -30,13 +30,11 @@ export default function Header(){
         } else {
             setPath("/");
         }
-        console.log(location.pathname);
     };
 
     useEffect(() => {
         changePath();
         changeNamePath();
-        console.log(path);
     },[]);
 
     return(

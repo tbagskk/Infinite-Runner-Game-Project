@@ -130,7 +130,7 @@ export default function GamePlay(canvasId, socket)
     
 
     socket.on('nbrPlayer', (data) => {
-        console.log("nbr de joueur", data);
+        // console.log("nbr de joueur", data);
     });
   
     let lastTime = 0;
@@ -248,7 +248,6 @@ export default function GamePlay(canvasId, socket)
           lost();
         } else {
           // La page est visible (l'utilisateur est revenu à la fenêtre ou à l'onglet)
-          console.log("Page visible");
         }
       }
 

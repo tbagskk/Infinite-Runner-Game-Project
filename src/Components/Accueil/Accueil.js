@@ -132,7 +132,6 @@ export default function AccueilAnim(canvasId){
         rePlay: function() {rePlay()},
         stop: function(){
             launch = false;
-            console.log("fonction stop ?");
              muse.pause();
              JumpSong.pause();
              cancelAnimationFrame(animationId);

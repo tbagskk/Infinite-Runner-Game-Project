@@ -47,8 +47,6 @@ export default function Accueil({setAccueil, putName}){
             {
                 if (name)
                     clickPlay();
-                    
-                
             }
         };
     

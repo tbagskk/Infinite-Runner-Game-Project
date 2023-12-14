@@ -13,7 +13,7 @@ export default function About(){
                 <p className='pAbout'>
                     Next update :
                 </p>
-                <br/>
+           
                 <p className='pAbout'>
                     - Implementation of a coin collection system to purchase new skins.
                     <br/>
@@ -24,31 +24,31 @@ export default function About(){
                     - Addition of skins with different functionalities.
                     
                 </p>
-                <br/>
+            
                 <p className='pAbout'>
                    Share your ideas :
                 </p>
-                <br/>
+               
                 <p className='pAbout'>
                     - The game is currently in the alpha development phase. Feel free to send me your suggestions. In the case of a large number of ideas, a vote will be organized to select the best one, which I will then develop.
                     <br/>
                     - Submit your ideas for skins to implement.
                 </p>
-                <br/>
+              
                 <p className='pAbout'>
                 Bug reporting :
                 </p>
-                <br/>
+             
                 <p className='pAbout'>
                     - The game is not yet responsive (accessible on mobile phones), but this feature will be added soon (and possibly even an application! Share your opinions!).
                     <br/>
                     - Please report any bugs you find so that I can fix them.
                 </p>
-                <br/>
+       
                 <p className='pAbout'>
                     Rewards :
                 </p>
-                <br/>
+            
                 <p className='pAbout'>
                     - As alpha testers, when individual accounts are implemented, you will all receive gifts in advance.
                     <br/>

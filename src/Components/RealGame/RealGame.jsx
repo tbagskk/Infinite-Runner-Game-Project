@@ -9,6 +9,7 @@ import config from '../Config.js';
 
 
 
+
 export default function TestSockets() {
 
     
@@ -36,6 +37,8 @@ export default function TestSockets() {
         setReplay(true);
         connectToServer(value);
     }
+
+
 
 
     const connectToServer = (name) => {  // connexion au serveur qui englobe tout
@@ -76,12 +79,16 @@ export default function TestSockets() {
         
         if (socket) {  // si la connexion est établi alors on écoute
             socket.on('userConnected', (message) => {
-                console.log(message);
+                // console.log(message);
                 
             });
 
+            socket.on('skin', (message) => {
+                // rien pour l'instant
+            })
+
             socket.on('userDisconnected', (message) => {
-                console.log(message);
+                // console.log(message);
                
             });
 

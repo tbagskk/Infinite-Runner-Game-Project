@@ -17,7 +17,6 @@ export default function Classement2(){
 
             // Limiter à 10 utilisateurs
             const limitedUsers = sortedUsers.slice(0, 9);
-            console.log(response)
             setUser(limitedUsers);
             ;}
             

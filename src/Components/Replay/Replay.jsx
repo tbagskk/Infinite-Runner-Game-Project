@@ -23,7 +23,7 @@ export default function RePlay({showReplay, skin, score}){
 
 
     const handleClick = useCallback((value) => {
-        console.log(value);
+
     
         let nbr = nbImg;
     
@@ -31,7 +31,6 @@ export default function RePlay({showReplay, skin, score}){
         if (nbr > 3) { nbr = 1; }
         if (nbr < 1) { nbr = 3; }
     
-        console.log("nbImg", nbImg);
     
         if (nbr === 1) {
             setCenterImage(Img1);
