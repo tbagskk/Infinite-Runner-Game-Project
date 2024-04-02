@@ -1,24 +1,16 @@
+
 #ContainerAccueil{
     position: absolute;
-
     height: 80%;
     width: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
-   
-
-    
-   
-    
-
-
-
-
+    max-width: 2000px; 
 }
 
 #CanvaAccueil{
-    background-color: #90F2FF;
+    background-color: #FFAA7A;
 }
 #PopupName{
 
@@ -26,7 +18,8 @@
     height: 75%;
     width: 40%;
     z-index: 2;
-    min-width: 400px;
+    max-height: 1000px;
+   /* min-width: 400px;*/
    
 }
 
@@ -36,37 +29,36 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-
-    
 }
 
 #PopupInput{
 
     min-height: 150px;
-    max-height: 150px;
-    height: 20%;
+    height: auto;
     display: flex;
     justify-content:flex-end;
     align-items: center;
     flex-direction: column;
     color: #545454;
+    width: 100%;
 
 
 }
 
 #imgPopup{
-    height: 90%;
+    max-width: 100%;
+    height: auto;
+    max-height: 90%;
     
 }
 
 
 #PopupInputChild{
     height: 60px;
-    width: 380px;
-
+    max-width: 380px;
+    width: 80%;
+    border-radius: 10px;
     text-align: center;
-    
     font-weight: 700;
     background-color: white;
 }
@@ -78,11 +70,10 @@
 
 #ButtonPopup{
     min-height: 60px;
-    min-width: 380px;
-    max-width: 60px;
-
+    max-width: 380px;
+    width: 80%;
     height: 20%;
-
+    border-radius: 10px;
     text-align: center;
     margin-top: 15px;
     background-color: #e7302b;
@@ -99,3 +90,68 @@
 }
 
 
+@media only screen and (max-width: 1000px) {
+    #PopupPicture{
+
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #PopupName{
+
+        position: absolute;
+        height: 25%;
+        width: 25%;
+        min-height: 300px;
+        min-width: 150px;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+       
+    }
+    #PopupInputChild{
+        height: auto;
+        min-height: 40px;
+        max-width: 380px;
+        width: 80%;
+        border-radius: 10px;
+        text-align: center;
+        font-weight: 700;
+        background-color: white;
+        font-size: 10px;
+    }
+    #ButtonPopup{
+        min-height: 40px;
+        max-width: 380px;
+        width: 80%;
+        height: 20%;
+
+        border-radius: 10px;
+        text-align: center;
+        margin-top: 15px;
+        background-color: #e7302b;
+        color: white;
+        font-weight: 700;
+        font-size: 10px;
+     
+    }
+    #PopupInput{
+
+        min-height: 0;
+        max-height: 150px;
+        height: auto;
+        display: flex;
+        justify-content:flex-end;
+        align-items: center;
+        flex-direction: column;
+        color: #545454;
+        width: 100%;
+    
+    
+    }
+    
+    
+}

@@ -145,6 +145,7 @@ export default function TestSockets() {
 
    
     return (
+        <div className='all-container'>
         <div id="containerGame" >
             <div id="containerCanva" className='rounded' >
                 <canvas
@@ -157,9 +158,13 @@ export default function TestSockets() {
                 />
 
             </div> 
-            {accueil && <Accueil setAccueil={AccueilState} />}
+            {accueil && <Accueil setAccueil={AccueilState} />} 
             {replay && <RePlay score={score} skin={theSkin} showReplay={showReplay}/>}
             {replay && <Classement2/>}
         </div>
+        </div>
     );
 }
+
+
+//

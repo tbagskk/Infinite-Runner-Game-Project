@@ -4,6 +4,7 @@ import jumpSong from '../../Sons/jump2.mp3'
 import Img1 from '../../Images/sapin.png';
 import Img2 from '../../Images/pixel3.png';
 import Img3 from '../../Images/flocon.png';
+import Tree from "../../Images/tree.webp";
 
 const image = new Image();
 const image2 = new Image();
@@ -17,7 +18,7 @@ JumpSong.src = jumpSong;
 let launch = false;
 
 image.src = Img3; 
-image2.src = Img1;
+image2.src = Tree;
 image3.src = Img2
 
 muse.src = Musique;
@@ -37,12 +38,7 @@ let Property = {
 
 export default function AccueilAnim(canvasId){
 
-   
-
-    
-
     let animationId;
-
     const canvas = document.getElementById(canvasId);
     const context = canvas.getContext('2d');
     
@@ -52,8 +48,8 @@ export default function AccueilAnim(canvasId){
       }));
       
     function draw(snowflake) {
-    context.drawImage(image2, 0, 150, 300, 300);
-    context.drawImage(image2, 700, 150, 300, 300);
+    context.drawImage(image2, 0, 158, 300, 300);
+    context.drawImage(image2, 700, 158, 300, 300);
     }
 
     let lastTime = 0;
@@ -101,7 +97,7 @@ export default function AccueilAnim(canvasId){
 
         snowflakes.forEach((flake) => {
             flake.y += 1 * delta;
-            context.drawImage(image, flake.x, flake.y, 40, 40);
+           // context.drawImage(image, flake.x, flake.y, 40, 40);
             if (flake.y > 450) {
                 flake.x = Math.random() * canvas.width;
                 flake.y = -20 + Math.random() * (-600 -(-20));
@@ -111,8 +107,6 @@ export default function AccueilAnim(canvasId){
         
     }
     }
-
-  
 
     function replayMuse(){
         muse.currentTime = 0;

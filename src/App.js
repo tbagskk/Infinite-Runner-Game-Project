@@ -9,10 +9,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
 const AccueilPage = () => (
-  <div className="h-screen flex flex-col" id="appp">
+  <>
     <Header />
     <TestSockets />
-  </div>
+  </>
 );
 
 const FormulaireComponent = () => (

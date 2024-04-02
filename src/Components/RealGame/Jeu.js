@@ -1,10 +1,13 @@
 import {chooseSkin} from '../ChooseSkin';
 import ennemy from './Enemy';
 import gift1 from '../../Images/gift.png';
-import Bg1 from '../../Images/bgSapin8.png';
+import Bg1 from '../../Images/bg15.png';
 import jumpSong from '../../Sons/jump2.mp3'
 import chockSong from '../../Sons/chock.mp3'
 import Musique from '../../Sons/musiqueNoel.mp3';
+import Sun from '../../Images/sun.png';
+import Status from '../../Images/status.png';
+
 
 
 
@@ -77,7 +80,7 @@ function collision(player, enemy) {
 function draw(delta, context, canvas) {
 
         
-
+        
         totalSeconds += delta;
         var vx = (300);  // correspond à la vitesse de défilement = 100 pixels/sec
 
