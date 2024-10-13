@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logo from '../../Images/CLIKS.png'
+import logo from '../../Images/logoCLIKS.png'
 import './Header.css';
 
 export default function Header(){
@@ -45,8 +45,7 @@ export default function Header(){
             </Link>
             </div>
             <div className="menuHeader">
-                <Link  className="buttonHeader" to={path} >{namePath}</Link>
-                <Link  className="buttonHeader" to="/about" >About us</Link>
+                
             </div>
         </div>
     )

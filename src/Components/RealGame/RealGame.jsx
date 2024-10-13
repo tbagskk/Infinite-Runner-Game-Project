@@ -6,6 +6,9 @@ import Accueil from '../Accueil/Accueil.jsx';
 import RePlay from '../Replay/Replay.jsx';
 import Classement2 from '../Classement/Classement.jsx';
 import config from '../Config.js';
+import Cookies from 'js-cookie';
+import axios from 'axios';
+import { useSocket } from '../../SocketContext.js';
 
 
 
@@ -14,12 +17,21 @@ export default function TestSockets() {
 
     
     const canvasRef = useRef(null);
-    const [socket, setSocket] = useState(null); // on crée un state socket
     const [accueil, setAccueil] = useState(true);
-    const [replay, setReplay] = useState(false);
+    const [replay, setReplay] = useState(true);
     const [theSkin, setTheSkin] = useState(1);
     const [score, setScore] = useState(0);
+    const [beginPartie, setBeginPartie] = useState(false);
     const GameRef = useRef(null);
+    const name = Cookies.get("name");
+    const { socket } = useSocket();
+
+    const setScore2 = async (theScore, skin) => {
+        //todo en pushant faut decommenter
+        console.log('name', name);
+        console.log(theScore);
+         await axios.post("/api/test", {name: name, score: theScore, skin: "1"});
+    }
 
     
 
@@ -29,27 +41,35 @@ export default function TestSockets() {
         setReplay(false);
         EmitEvent();
         socketSkin(skin);
+        socket.emit("name", name);
+        initGame();
         GameRef.current.rePlay(skin);
+
     };
 
     const AccueilState = (value) => { //name
         setAccueil(false);
         setReplay(true);
-        connectToServer(value);
+       // connectToServer(value);
     }
 
-
-
-
-    const connectToServer = (name) => {  // connexion au serveur qui englobe tout
-        const newSocket = io(config.apiUrl, {
-            path: '/socket.io',
-        });
-        setSocket(newSocket); // enregistrement de la state socket
-        newSocket.emit("name", name);
-        GameRef.current = Jeu('CanvaGame', newSocket);
-        GameRef.current.rePlay(1);
+    const initGame = () => {
+        GameRef.current = Jeu('CanvaGame', socket, setReplay, setScore2);
     };
+
+
+
+
+
+    // const connectToServer = (name) => {  // connexion au serveur qui englobe tout
+    //     const newSocket = io(config.apiUrl, {
+    //         path: '/socket.io',
+    //     });
+    //     setSocket(newSocket); // enregistrement de la state socket
+    //     newSocket.emit("name", name);
+    //     GameRef.current = Jeu('CanvaGame', newSocket);
+    //     GameRef.current.rePlay(1);
+    // };
 
 
 
@@ -69,8 +89,8 @@ export default function TestSockets() {
         
     const EmitEvent = () => {
         if (socket) {
-            
-            socket.emit("diEh", "7"); //play
+            console.log("play ?")
+            socket.emit("play", "7"); //play
         }
 
     };
@@ -114,8 +134,9 @@ export default function TestSockets() {
 
         const handleKeyDown = (event) => {
             if (event.code === 'Space' || event.code === 'ArrowUp') {
-                if (socket)
-                    socket.emit("3sdC", "0"); //saut
+                // if (socket)
+                //     socket.emit("jump", "0"); //saut
+                GameRef.current.jump();
             }
           }
         window.addEventListener('keydown', handleKeyDown);
@@ -125,7 +146,7 @@ export default function TestSockets() {
             window.removeEventListener('keydown', handleKeyDown);
             // window.removeEventListener('touchstart', handleTouch);
         };
-    },[socket]);
+    },[GameRef]);
 
     useEffect(() => {
         if (replay === true)
@@ -140,8 +161,13 @@ export default function TestSockets() {
             if (GameRef.current)
                 GameRef.current.stop();
         };
+        
        
     },[])
+
+    useEffect(() => {
+        AccueilState(name);
+    },[]);
 
    
     return (
@@ -158,13 +184,15 @@ export default function TestSockets() {
                 />
 
             </div> 
-            {accueil && <Accueil setAccueil={AccueilState} />} 
+           
             {replay && <RePlay score={score} skin={theSkin} showReplay={showReplay}/>}
-            {replay && <Classement2/>}
+           
         </div>
         </div>
     );
 }
 
+//  {accueil && <Accueil setAccueil={AccueilState} />} 
+//  {replay && <Classement2/>}
 
 //

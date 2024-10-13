@@ -6,6 +6,7 @@ const secretKey = 'gabin_test'; // Gardez cette clé secrète
 const cookie = require('cookie'); // Ajout de l'importation du module cookie
 
 module.exports = async (req, res) => {
+  
   try {
 
 
@@ -19,22 +20,23 @@ module.exports = async (req, res) => {
       'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
     )
 
-
+    
   
   // protection de la route avec JWT
 
   const cookies = cookie.parse(req.headers.cookie || ''); // Parse les cookies de l'en-tête
   const token = cookies.token;
 
-    if (!token) {
-      return res.status(401).json({ message: 'Authentification requise' });
-    }
+    // if (!token) {
+    //   return res.status(401).json({ message: 'Authentification requise' });
+    // }
 
-    jwt.verify(token, secretKey, async (err, decoded) => {
-      if (err) {
-        return res.status(403).json({ message: 'Token non valide' });
-      }
+    // jwt.verify(token, secretKey, async (err, decoded) => {
+    //   if (err) {
+    //     return res.status(403).json({ message: 'Token non valide' });
+    //   }
 
+      console.log('ca passe');
   // le reste du code si JWT est reconnu
 
 
@@ -42,6 +44,7 @@ module.exports = async (req, res) => {
     let newScore = req.body.score;
     let skin = req.body.skin;
     let nbgame;
+    console.log("lol", theName, newScore, skin, nbgame);
     console.log("Function invoked add Score");
 
     const existingUser = await prisma.user.findFirst({
@@ -63,7 +66,7 @@ module.exports = async (req, res) => {
             data: {
               score: newScore,
               skin: skin,
-              nbgame: (nbgame + 1)
+              nbgame: nbgame + 1,
             },
           });
     
@@ -81,7 +84,8 @@ module.exports = async (req, res) => {
         });
       }
 
-    })
+    
+   
     } catch (error) {
       console.error('Error updating user score:', error);
       throw error;

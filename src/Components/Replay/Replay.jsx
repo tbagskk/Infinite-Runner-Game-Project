@@ -66,7 +66,7 @@ export default function RePlay({showReplay, skin, score}){
 
     
     return (
-        <div  id="ContainerAccueil" className=''>
+        <div  className='replay-conatiner'>
                 {active && <div id="PopupPlayer">
                 <div id="PopupPicturePlayer">
                     <img  alt="left" onClick={()=>handleClick("gauche")}src={Gauche}className='buttonSkin'></img>

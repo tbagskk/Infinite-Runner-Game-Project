@@ -1,12 +1,13 @@
 import {chooseSkin} from '../ChooseSkin';
 import ennemy from './Enemy';
 import gift1 from '../../Images/gift.png';
-import Bg1 from '../../Images/bg15.png';
+import Bg1 from '../../Images/bg_dark_house.png';
 import jumpSong from '../../Sons/jump2.mp3'
 import chockSong from '../../Sons/chock.mp3'
 import Musique from '../../Sons/musiqueNoel.mp3';
 import Sun from '../../Images/sun.png';
 import Status from '../../Images/status.png';
+import axios from 'axios';
 
 
 
@@ -27,6 +28,7 @@ let animationId;
 let totalSeconds = 0;
 let lastFrameTime = 0;
 
+
 let User = {
  
 }
@@ -34,6 +36,7 @@ let User = {
 let Property = {
   
 }
+
 
 
 function initAll(skin){
@@ -44,7 +47,7 @@ function initAll(skin){
         speed:1.5,
         userGround: 400,
         TimeEnemy: 700,
-        SendEnemy: false,
+        SendEnemy: true,
 
     }
     User = {
@@ -52,8 +55,8 @@ function initAll(skin){
         y : 400,
         width : 50,
         height : 50,
-        jumpCount:0,
-        score:0,
+        jumpCount: 0,
+        score: 0,
         skin:skin,
     };
    
@@ -61,6 +64,8 @@ function initAll(skin){
 
 }
 
+let startGame = performance.now();
+initAll(User.skin);
 function collision(player, enemy) {
 
 
@@ -103,10 +108,13 @@ function draw(delta, context, canvas) {
       });
 }
 
-export default function GamePlay(canvasId, socket)
+export default function GamePlay(canvasId, socket, replayG, setScore)
 {
     const canvas = document.getElementById(canvasId);
     const context = canvas.getContext('2d');
+    console.log("gameplay lancé ");
+
+   
 
 
     
@@ -116,6 +124,7 @@ export default function GamePlay(canvasId, socket)
 
     socket.on('Enemy', (data) => {
             Property.SendEnemy = true;
+            console.log("enemy");
     });
 
     socket.on('Lost', (data) => {
@@ -133,7 +142,7 @@ export default function GamePlay(canvasId, socket)
     
 
     socket.on('nbrPlayer', (data) => {
-        // console.log("nbr de joueur", data);
+         console.log("nbr de joueur", data);
     });
   
     let lastTime = 0;
@@ -192,6 +201,7 @@ export default function GamePlay(canvasId, socket)
                     ennemy(CubeClient, Property.ground)
                 }
           }
+          User.score = Math.floor((now - startGame) / 15);
 
           
           
@@ -220,7 +230,7 @@ export default function GamePlay(canvasId, socket)
 
     function rePlay(skin) {
         muse.currentTime = 0;
-         muse.play();
+        muse.play();
         initAll(skin);
         animationId = requestAnimationFrame(loop);
     };
@@ -229,40 +239,44 @@ export default function GamePlay(canvasId, socket)
         // ChockSong.currentTime = 0;
         // ChockSong.play();
          muse.pause();
-        socket.emit("528=", "19"); // lost
+        socket.emit("lost", "19"); // lost
         cancelAnimationFrame(animationId);
+        setScore(User.score, User.skin);
+        replayG(true);
     };
 
 
 
-    function handleKeyDown(event) {
-         if (event.code === 'Space' || event.code === 'ArrowUp'){
-            startJump();
-         }
+    // function handleKeyDown(event) {
+    //      if (event.code === 'Space' || event.code === 'ArrowUp'){
+    //         startJump();
+    //         console.log('jump ?');
+    //      }
          
          
-    }
+    // }
     
-    document.addEventListener('keydown', handleKeyDown);
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-    function handleVisibilityChange() {
-        if (document.hidden) {
+    // document.addEventListener('keydown', handleKeyDown);
+    // document.addEventListener("visibilitychange", handleVisibilityChange);
+    // function handleVisibilityChange() {
+    //     if (document.hidden) {
           
-          lost();
-        } else {
-          // La page est visible (l'utilisateur est revenu à la fenêtre ou à l'onglet)
-        }
-      }
+    //       lost();
+    //     } else {
+    //       // La page est visible (l'utilisateur est revenu à la fenêtre ou à l'onglet)
+    //     }
+    //   }
 
-    function removeEventListeners() {
-        document.removeEventListener('keydown', handleKeyDown);
+    // function removeEventListeners() {
+    //     document.removeEventListener('keydown', handleKeyDown);
         
-    }
+    // }
 
     function stop() {
         cancelAnimationFrame(animationId);
         muse.pause();
-        removeEventListeners();
+       // removeEventListeners();
+        
     };
 
     return {
@@ -273,11 +287,11 @@ export default function GamePlay(canvasId, socket)
             stop();
         },
         jump: function() {
-
+            startJump();
         },
         rePlay: function(skin){
             rePlay(skin);
         },
-        removeEventListeners
+    //    removeEventListeners
     }
 }

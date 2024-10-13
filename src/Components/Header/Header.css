@@ -1,12 +1,15 @@
 .containerHeader{
-    background-color: #eb7371;
-    height: 70px;
+    background-color: #121212 ;
+    height: 50px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-left: 5%;
     padding-right: 5%;
+    position: absolute;
+    top: 0;
+    z-index: 2;
 }
 
 .logoHeader{
@@ -29,8 +32,8 @@
 
 .buttonHeader{
     background-color: white;
-    border-radius: 10px;
-    height: 40px;
+    border-radius: 5px;
+    height: 30px;
     width: 115px;
     display: flex;
     justify-content: center;
@@ -60,12 +63,12 @@
         align-items: center;
         height: 60px;
         width: auto;
-        font-size: 13px;
+        font-size: 10px;
     }
     .buttonHeader{
         background-color: white;
         border-radius: 10px;
-        height: 40px;
+        height: 35px;
         max-width: 115px;
         width: auto;
         display: flex;

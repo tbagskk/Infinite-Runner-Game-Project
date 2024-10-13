@@ -4,6 +4,7 @@ import AccueilAnim from './Accueil.js';
 import Img1 from '../../Images/pixel3.png';
 
 
+
 export default function Accueil({setAccueil, putName}){
     const canvasRef = useRef(null);
 
@@ -27,6 +28,8 @@ export default function Accueil({setAccueil, putName}){
         if (inputValue.length > 10) {return;}
         setName(event.target.value);
     };
+
+    
 
     
   
@@ -107,8 +110,9 @@ export default function Accueil({setAccueil, putName}){
                             style = {{width: '100%', height: '100', overflow: 'hidden', position: 'relative' }} 
                             className="bg-white rounded-lg "
                     />
-                
+ 
             </div>
+            
 
         
 
