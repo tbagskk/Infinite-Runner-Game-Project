@@ -108,7 +108,7 @@ function draw(delta, context, canvas) {
       });
 }
 
-export default function GamePlay(canvasId, socket, replayG, setScore)
+export default function GamePlay(canvasId, replayG, setScore)
 {
     const canvas = document.getElementById(canvasId);
     const context = canvas.getContext('2d');
@@ -119,31 +119,31 @@ export default function GamePlay(canvasId, socket, replayG, setScore)
 
     
 
-    socket.on('UserY', (data) => {
-    });
+    // socket.on('UserY', (data) => {
+    // });
 
-    socket.on('Enemy', (data) => {
-            Property.SendEnemy = true;
-            console.log("enemy");
-    });
+    // socket.on('Enemy', (data) => {
+    //         Property.SendEnemy = true;
+    //         console.log("enemy");
+    // });
 
-    socket.on('Lost', (data) => {
-        // cancelAnimationFrame(animationId);
-    });
+    // socket.on('Lost', (data) => {
+    //     // cancelAnimationFrame(animationId);
+    // });
 
-    socket.on('Speed', (data) => {
-        Property.speed += 0.1;
-    });
+    // socket.on('Speed', (data) => {
+    //     Property.speed += 0.1;
+    // });
 
-    socket.on('Score', (data) => {
-        User.score = data;
-    });
+    // socket.on('Score', (data) => {
+    //     User.score = data;
+    // });
 
     
 
-    socket.on('nbrPlayer', (data) => {
-         console.log("nbr de joueur", data);
-    });
+    // socket.on('nbrPlayer', (data) => {
+    //      console.log("nbr de joueur", data);
+    // });
   
     let lastTime = 0;
     let TimeEnemy = 0;
@@ -201,7 +201,8 @@ export default function GamePlay(canvasId, socket, replayG, setScore)
                     ennemy(CubeClient, Property.ground)
                 }
           }
-          User.score = Math.floor((now - startGame) / 15);
+       //   User.score = Math.floor((now - startGame) / 15);
+       User.score = User.score + 1;
 
           
           
@@ -239,7 +240,7 @@ export default function GamePlay(canvasId, socket, replayG, setScore)
         // ChockSong.currentTime = 0;
         // ChockSong.play();
          muse.pause();
-        socket.emit("lost", "19"); // lost
+       // socket.emit("lost", "19"); // lost
         cancelAnimationFrame(animationId);
         setScore(User.score, User.skin);
         replayG(true);

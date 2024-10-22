@@ -57,7 +57,6 @@ function App() {
     console.log("rendu");
   },[]);
   return (
-    <SocketProvider>
     <Router>
       <Routes>
         <Route path="/infos" element={<FormulaireComponent/>} />
@@ -68,7 +67,6 @@ function App() {
         <Route path="/game" element={<AccueilPage />} />
       </Routes>
     </Router>
-    </SocketProvider>
   );
 }
 

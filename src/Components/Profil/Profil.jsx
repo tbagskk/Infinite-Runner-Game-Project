@@ -3,14 +3,14 @@ import './Profil.scss';
 import imgSkin1 from '../../Images/turtle.png';
 import imgSkin2 from '../../Images/pixel2.png';
 import imgSkin3 from '../../Images/pixel3.png';
-import { useSocket } from '../../SocketContext.js';
+//import { useSocket } from '../../SocketContext.js';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export default function Profil() {
 
-    const { socket } = useSocket();
+   // const { socket } = useSocket();
     const [rank, setRank] = useState(null);
     const [infoUser, setInfosUser] = useState(null);
     const name = Cookies.get("name");
@@ -44,22 +44,22 @@ export default function Profil() {
     }, []);
 
 
-    useEffect(() => {
-        if (socket) {
-            socket.emit("profil_info", "profil");
-        }
-    },[]);
+    // useEffect(() => {
+    //     if (socket) {
+    //         socket.emit("profil_info", "profil");
+    //     }
+    // },[]);
 
-    useEffect(() => {
-        if (socket) {
-            socket.on("score", (arg) => {
-                arg.sort((a, b) => b.score - a.score);
-                setRank(arg);
-                console.log(arg);
-            });
-        }
+    // useEffect(() => {
+    //     if (socket) {
+    //         socket.on("score", (arg) => {
+    //             arg.sort((a, b) => b.score - a.score);
+    //             setRank(arg);
+    //             console.log(arg);
+    //         });
+    //     }
         
-    },[socket]);
+    // },[socket]);
 
     const chooseSkin = (number) => {
         if (number === "default_skin") {

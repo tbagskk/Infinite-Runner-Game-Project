@@ -8,7 +8,7 @@ import Classement2 from '../Classement/Classement.jsx';
 import config from '../Config.js';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-import { useSocket } from '../../SocketContext.js';
+// import { useSocket } from '../../SocketContext.js';
 
 
 
@@ -24,13 +24,14 @@ export default function TestSockets() {
     const [beginPartie, setBeginPartie] = useState(false);
     const GameRef = useRef(null);
     const name = Cookies.get("name");
-    const { socket } = useSocket();
+   // const { socket } = useSocket();
 
     const setScore2 = async (theScore, skin) => {
         //todo en pushant faut decommenter
+        console.log("theScore", theScore);
         console.log('name', name);
         console.log(theScore);
-         await axios.post("/api/test", {name: name, score: theScore, skin: "1"});
+        await axios.post("/api/test", {name: name, score: theScore, skin: "1"});
     }
 
     
@@ -39,9 +40,9 @@ export default function TestSockets() {
         
         setTheSkin(skin);
         setReplay(false);
-        EmitEvent();
+     //   EmitEvent();
         socketSkin(skin);
-        socket.emit("name", name);
+      //  socket.emit("name", name);
         initGame();
         GameRef.current.rePlay(skin);
 
@@ -54,7 +55,7 @@ export default function TestSockets() {
     }
 
     const initGame = () => {
-        GameRef.current = Jeu('CanvaGame', socket, setReplay, setScore2);
+        GameRef.current = Jeu('CanvaGame',setReplay, setScore2);
     };
 
 
@@ -81,54 +82,52 @@ export default function TestSockets() {
             skinStr = '2';
         else if (skin === 3)
             skinStr = '3';
-        if (socket) {
-            socket.emit("skin", skinStr);
-    }};
+        };
 
   
         
-    const EmitEvent = () => {
-        if (socket) {
-            console.log("play ?")
-            socket.emit("play", "7"); //play
-        }
+    // const EmitEvent = () => {
+    //     if (socket) {
+    //         console.log("play ?")
+    //         socket.emit("play", "7"); //play
+    //     }
 
-    };
+    // };
 
-    useEffect(() => {
+    // useEffect(() => {
         
-        if (socket) {  // si la connexion est établi alors on écoute
-            socket.on('userConnected', (message) => {
-                // console.log(message);
+    //     if (socket) {  // si la connexion est établi alors on écoute
+    //         socket.on('userConnected', (message) => {
+    //             // console.log(message);
                 
-            });
+    //         });
 
-            socket.on('skin', (message) => {
-                // rien pour l'instant
-            })
+    //         socket.on('skin', (message) => {
+    //             // rien pour l'instant
+    //         })
 
-            socket.on('userDisconnected', (message) => {
-                // console.log(message);
+    //         socket.on('userDisconnected', (message) => {
+    //             // console.log(message);
                
-            });
+    //         });
 
-            socket.on('lostServer', (message) => {
-                setReplay(true);
-            });
+    //         socket.on('lostServer', (message) => {
+    //             setReplay(true);
+    //         });
 
-            socket.on('ScoreLost', (score) => {
-                    setScore(score);
+    //         socket.on('ScoreLost', (score) => {
+    //                 setScore(score);
                 
-            });
-        }
+    //         });
+    //     }
 
-        return () => {  // on démonte les ecouteurs
-            if (socket) {
-                socket.off('userConnected');
-                socket.off('userDisconnected');
-            }
-        };
-    }, [socket]);
+    //     return () => {  // on démonte les ecouteurs
+    //         if (socket) {
+    //             socket.off('userConnected');
+    //             socket.off('userDisconnected');
+    //         }
+    //     };
+    // }, [socket]);
 
     useEffect(() => {
 

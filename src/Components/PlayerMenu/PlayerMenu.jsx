@@ -5,7 +5,7 @@ import imgSkin2 from '../../Images/pixel2.png';
 import imgSkin3 from '../../Images/pixel3.png';
 import imgLogo  from '../../Images/logoCLIKS.png';
 import { useNavigate } from 'react-router-dom';
-import { useSocket } from '../../SocketContext.js';
+// import { useSocket } from '../../SocketContext.js';
 import Cookies from 'js-cookie';
 
 
@@ -16,7 +16,7 @@ export default function PlayerMenu() {
     const [name, setName] = useState("");
     const [msgErrorName, setMsgErrorName] = useState(false);
     const navigate = useNavigate();
-    const { socket } = useSocket();
+   // const { socket } = useSocket();
 
     // FONCTION POUR PARSER LE NOM D'UTLISATEUR
     const handleNameChange = (event) => {
@@ -45,8 +45,8 @@ export default function PlayerMenu() {
             setMsgErrorName(true);
             return;
         }
-        socket.emit("name", name);
-        socket.emit("skin", skinUsed);
+        // socket.emit("name", name);
+        // socket.emit("skin", skinUsed);
         Cookies.set('name', name);
         navigate("/profil");
     };
